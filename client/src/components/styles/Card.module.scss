@@ -1,0 +1,32 @@
+.card {
+  background-color: rgb(152, 126, 126);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+
+  width: 90%;
+
+  margin: 0.5em;
+
+  h3 {
+    color: rgb(249, 249, 249);
+    font-size: 1em;
+    font-weight: 600;
+    text-align: center;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+  }
+  img {
+    height: 99%;
+    width: 99%;
+  }
+  h5 {
+    color: rgb(239, 239, 239);
+    font-size: 0.8em;
+    font-weight: 300;
+    text-align: center;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+  }
+}
