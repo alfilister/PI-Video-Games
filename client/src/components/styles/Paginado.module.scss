@@ -1,0 +1,21 @@
+.pagNav {
+  display: flex;
+  justify-content: center;
+
+  button {
+    border-style: none;
+    border-radius: 15px;
+    font-size: 1rem;
+    color: whitesmoke;
+    background-color: gray;
+
+    margin: 0.2rem;
+    width: 3.5rem;
+    height: 2rem;
+
+    &:hover {
+      background-color: rgb(228, 228, 228);
+      color: black;
+    }
+  }
+}

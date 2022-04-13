@@ -1,4 +1,32 @@
+.btnCreate {
+  display: flex;
+  justify-content: end;
+  height: 2em;
+  margin-right: 4%;
+}
+
+.mainTitle {
+  text-align: center;
+  text-decoration: wavy;
+}
+
 .cardSpace {
   display: grid;
   grid-template-columns: 32vw 33vw 32vw;
+}
+
+.filterBar {
+  display: flex;
+  justify-content: center;
+  margin: 1em auto;
+
+  select {
+    width: auto;
+    height: 2em;
+    margin: auto 0.15em;
+  }
+
+  button {
+    margin-left: 2em;
+  }
 }
