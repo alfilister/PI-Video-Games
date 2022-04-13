@@ -2,7 +2,7 @@ import style from "./styles/Home.module.scss"
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { getVideogames } from "../actions"
+import { getVideogames, filterVideogamesByOrigin } from "../actions"
 import Card from "./Card"
 import Paginado from "./Paginado"
 
@@ -11,7 +11,7 @@ function Home() {
   const allVideogames = useSelector((state) => state.videogames)
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [videogamesPerPage, setVideogamesPerPage] = useState(15)
+  const videogamesPerPage = 15
   const indexLastVideogame = currentPage * videogamesPerPage
   const indexFirsVideogame = indexLastVideogame - videogamesPerPage
   const currentVideogames = allVideogames.slice(
@@ -32,6 +32,11 @@ function Home() {
     dispatch(getVideogames())
   }
 
+  const handleFilterOrigin = (e) => {
+    e.preventDefault()
+    dispatch(filterVideogamesByOrigin(e.target.value))
+  }
+
   return (
     <>
       <div>
@@ -50,7 +55,7 @@ function Home() {
             <option value="ascRating">Asc Rating</option>
             <option value="desRating">Des Rating</option>
           </select>
-          <select>
+          <select onChange={(e) => handleFilterOrigin(e)}>
             <option value="all">All</option>
             <option value="created">Created</option>
             <option value="api">Api</option>
