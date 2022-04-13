@@ -1,11 +1,12 @@
 import axios from "axios"
+const { GET_VIDEOGAMES, FILTER_BY_ORIGIN } = require("../action-types")
 
 export function getVideogames() {
   return async function (dispatch) {
     try {
       var info = await axios.get("http://localhost:3001/api/videogames")
       return dispatch({
-        type: "GET_VIDEOGAMES",
+        type: GET_VIDEOGAMES,
         payload: info.data.data,
       })
     } catch (err) {
@@ -16,7 +17,7 @@ export function getVideogames() {
 
 export function filterVideogamesByOrigin(payload) {
   return {
-    type: "FILTER_BY_ORIGIN",
+    type: FILTER_BY_ORIGIN,
     payload,
   }
 }
