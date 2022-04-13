@@ -13,3 +13,10 @@ export function getVideogames() {
     }
   }
 }
+
+export function filterVideogamesByOrigin(payload) {
+  return {
+    type: "FILTER_BY_ORIGIN",
+    payload,
+  }
+}
