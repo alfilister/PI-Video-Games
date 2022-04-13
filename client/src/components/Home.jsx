@@ -39,10 +39,10 @@ function Home() {
 
   return (
     <>
-      <div>
-        <div className={style.btnCreate}>
+      <div className={style.homeDiv}>
+        <div>
           <Link to="/videogame">
-            <button>Crear videojuego</button>
+            <button className={style.btnCreate}>Crear videojuego</button>
           </Link>
         </div>
         <h1 className={style.mainTitle}>VIDEOJUEGOS</h1>
@@ -83,6 +83,11 @@ function Home() {
             )
           })}
         </div>
+        <Paginado
+          videogamesPerPage={videogamesPerPage}
+          allVideogames={allVideogames.length}
+          paginado={paginado}
+        />
       </div>
     </>
   )

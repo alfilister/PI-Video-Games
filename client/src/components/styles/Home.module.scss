@@ -1,18 +1,28 @@
+.homeDiv {
+  background-image: url("../../miscellaneous/img2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .btnCreate {
-  display: flex;
-  justify-content: end;
+  margin: 2em;
+  width: 9em;
   height: 2em;
-  margin-right: 4%;
 }
 
 .mainTitle {
   text-align: center;
   text-decoration: wavy;
+  font-family: "Press Start 2P", cursive;
+  color: whitesmoke;
+  font-size: 3em;
+  -webkit-text-stroke: 2px rgb(59, 59, 59);
 }
 
 .cardSpace {
   display: grid;
   grid-template-columns: 32vw 33vw 32vw;
+  margin-left: 1em;
 }
 
 .filterBar {

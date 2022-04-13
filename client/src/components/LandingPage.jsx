@@ -6,7 +6,8 @@ function LandingPage() {
   return (
     <>
       <div className={style.landing}>
-        <h1>Videogame Universe</h1>
+        <h1>Video</h1>
+        <h1>Games</h1>
         <Link to="/home">
           <button>Enter</button>
         </Link>

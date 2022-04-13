@@ -1,5 +1,5 @@
 .card {
-  background-color: rgba(126, 152, 152, 0.781);
+  background-color: rgba(31, 31, 31, 0.781);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,9 +9,13 @@
 
   margin: 0.5em;
 
+  &:hover {
+    box-shadow: 2px 2px 15px #000000, -2px -2px 15px #ffffff;
+  }
+
   h3 {
     color: rgb(249, 249, 249);
-    font-size: 1em;
+    font-size: 1.2em;
     font-weight: 600;
     text-align: center;
     padding-left: 0.2em;
@@ -23,8 +27,8 @@
   }
   h5 {
     color: rgb(239, 239, 239);
-    font-size: 0.8em;
-    font-weight: 300;
+    font-size: 0.9em;
+    font-weight: 600;
     text-align: center;
     padding-left: 0.2em;
     padding-right: 0.2em;

@@ -1,13 +1,16 @@
 .pagNav {
   display: flex;
   justify-content: center;
+  margin: 1.5em auto;
+  padding-bottom: 2em;
 
   button {
     border-style: none;
     border-radius: 15px;
     font-size: 1rem;
     color: whitesmoke;
-    background-color: gray;
+    background-color: rgba(31, 31, 31, 0.781);
+    border: 1px solid whitesmoke;
 
     margin: 0.2rem;
     width: 3.5rem;
