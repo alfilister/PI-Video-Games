@@ -22,13 +22,13 @@
 .cardSpace {
   display: grid;
   grid-template-columns: 32vw 33vw 32vw;
-  margin-left: 1em;
+  margin: 1em auto 1em 0.5em;
 }
 
 .filterBar {
   display: flex;
   justify-content: center;
-  margin: 1em auto;
+  margin: 1.5em auto;
 
   select {
     width: auto;
