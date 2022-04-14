@@ -1,6 +1,8 @@
 import {
   GET_VIDEOGAMES,
+  GET_GENRES,
   FILTER_BY_ORIGIN,
+  FILTER_BY_GENRE,
   SORT_ALPHABETIC,
   SORT_RATING,
 } from "../action-types"
@@ -8,6 +10,7 @@ import {
 const initialState = {
   videogames: [],
   allvideogames: [],
+  allgenres: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -19,18 +22,35 @@ function rootReducer(state = initialState, action) {
         allvideogames: action.payload,
       }
 
+    case GET_GENRES:
+      return {
+        ...state,
+        allgenres: action.payload,
+      }
+
     case FILTER_BY_ORIGIN:
-      const allVideogames = state.allvideogames
+      const toFilterByOrigin = state.allvideogames
       const originFiltered =
-        (action.payload === "all" && allVideogames) ||
+        (action.payload === "all" && toFilterByOrigin) ||
         (action.payload === "created" &&
-          allVideogames.filter((el) => el.created_in_db)) ||
+          toFilterByOrigin.filter((el) => el.created_in_db)) ||
         (action.payload === "api" &&
-          allVideogames.filter((el) => !el.created_in_db))
+          toFilterByOrigin.filter((el) => !el.created_in_db))
 
       return {
         ...state,
         videogames: originFiltered,
+      }
+
+    case FILTER_BY_GENRE:
+      const toFilterByGenre = state.allvideogames
+      const genreFiltered = toFilterByGenre.filter((el) =>
+        el.genres.includes(action.payload)
+      )
+
+      return {
+        ...state,
+        videogames: genreFiltered,
       }
 
     case SORT_ALPHABETIC:

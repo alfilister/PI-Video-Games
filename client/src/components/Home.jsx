@@ -7,6 +7,8 @@ import {
   filterVideogamesByOrigin,
   sortVideogamesAz,
   sortVideogamesRating,
+  getGenres,
+  filterVideogamesByGenre,
 } from "../actions"
 import Card from "./Card"
 import Paginado from "./Paginado"
@@ -14,8 +16,10 @@ import Paginado from "./Paginado"
 function Home() {
   const dispatch = useDispatch()
   const allVideogames = useSelector((state) => state.videogames)
+  const allGenres = useSelector((state) => state.allgenres)
 
   const [origin, setOrigin] = useState("Filter By Origin")
+  const [genre, setGenre] = useState("Filter By Genre")
   const [sortAz, setSortAz] = useState("Sort A-Z")
   const [sortRating, setSortRating] = useState("Sort Rating")
 
@@ -34,6 +38,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(getVideogames())
+    dispatch(getGenres())
   }, [dispatch])
 
   const handleReset = (e) => {
@@ -41,6 +46,7 @@ function Home() {
     dispatch(getVideogames())
     setCurrentPage(1)
     setOrigin("Filter By Origin")
+    setGenre("Filter By Genre")
     setSortAz("Sort A-Z")
     setSortRating("Sort Rating")
   }
@@ -49,6 +55,12 @@ function Home() {
     e.preventDefault()
     setOrigin(e.target.value)
     dispatch(filterVideogamesByOrigin(e.target.value))
+  }
+
+  const handleFilterGenre = (e) => {
+    e.preventDefault()
+    setGenre(e.target.value)
+    dispatch(filterVideogamesByGenre(e.target.value))
   }
 
   const handleSortAz = (e) => {
@@ -84,6 +96,16 @@ function Home() {
             <option disabled>Sort Rating</option>
             <option value="asc">Asc</option>
             <option value="des">Des</option>
+          </select>
+          <select value={genre} onChange={(e) => handleFilterGenre(e)}>
+            <option disabled>Filter By Genre</option>
+            {allGenres.map((genre) => {
+              return (
+                <>
+                  <option value={genre}>{genre}</option>
+                </>
+              )
+            })}
           </select>
           <select value={origin} onChange={(e) => handleFilterOrigin(e)}>
             <option disabled>Filter By Origin</option>
