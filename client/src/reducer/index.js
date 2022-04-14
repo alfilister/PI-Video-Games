@@ -2,16 +2,19 @@ import {
   GET_VIDEOGAMES,
   GET_VIDEOGAMES_BY_NAME,
   GET_GENRES,
+  GET_PLATFORMS,
   FILTER_BY_ORIGIN,
   FILTER_BY_GENRE,
   SORT_ALPHABETIC,
   SORT_RATING,
+  POST_VIDEOGAME,
 } from "../action-types"
 
 const initialState = {
   videogames: [],
   allvideogames: [],
   allgenres: [],
+  allplatforms: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -35,6 +38,23 @@ function rootReducer(state = initialState, action) {
         ...state,
         allgenres: action.payload,
       }
+
+    case GET_PLATFORMS:
+      const toGetPlatforms = state.allvideogames
+      var platformsFinal = []
+      const platformsFiltered = toGetPlatforms.map((el) => {
+        el.platforms.map((el) => {
+          !platformsFinal.includes(el) && platformsFinal.push(el)
+        })
+      })
+
+      return {
+        ...state,
+        allplatforms: platformsFinal,
+      }
+
+    case POST_VIDEOGAME:
+      return { state }
 
     case FILTER_BY_ORIGIN:
       const toFilterByOrigin = state.allvideogames

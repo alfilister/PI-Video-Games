@@ -3,8 +3,13 @@ const {
   GET_VIDEOGAMES,
   GET_VIDEOGAMES_BY_NAME,
   GET_GENRES,
+  GET_PLATFORMS,
+
+  POST_VIDEOGAME,
+
   FILTER_BY_ORIGIN,
   FILTER_BY_GENRE,
+
   SORT_ALPHABETIC,
   SORT_RATING,
   SORT_GENRE,
@@ -51,6 +56,26 @@ export function getGenres() {
         type: GET_GENRES,
         payload: genres.data,
       })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export function getPlatforms() {
+  return {
+    type: GET_PLATFORMS,
+  }
+}
+
+export function postVideogame(payload) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/videogame",
+        payload
+      )
+      return response
     } catch (err) {
       console.log(err)
     }
