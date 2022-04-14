@@ -10,6 +10,8 @@ function Home() {
   const dispatch = useDispatch()
   const allVideogames = useSelector((state) => state.videogames)
 
+  const [origin, setOrigin] = useState("Origin")
+
   const [currentPage, setCurrentPage] = useState(1)
   const videogamesPerPage = 15
   const indexLastVideogame = currentPage * videogamesPerPage
@@ -34,6 +36,7 @@ function Home() {
 
   const handleFilterOrigin = (e) => {
     e.preventDefault()
+    setOrigin(e.target.value)
     dispatch(filterVideogamesByOrigin(e.target.value))
   }
 
@@ -55,7 +58,8 @@ function Home() {
             <option value="ascRating">Asc Rating</option>
             <option value="desRating">Des Rating</option>
           </select>
-          <select onChange={(e) => handleFilterOrigin(e)}>
+          <select value={origin} onChange={(e) => handleFilterOrigin(e)}>
+            <option disabled>Origin</option>
             <option value="all">All</option>
             <option value="created">Created</option>
             <option value="api">Api</option>

@@ -17,9 +17,12 @@ function rootReducer(state = initialState, action) {
     case FILTER_BY_ORIGIN:
       const allVideogames = state.allvideogames
       const originFiltered =
-        action.payload === "created"
-          ? allVideogames.filter((el) => el.created_in_db)
-          : allVideogames.filter((el) => el.created_in_db === undefined)
+        (action.payload === "all" && allVideogames) ||
+        (action.payload === "created" &&
+          allVideogames.filter((el) => el.created_in_db)) ||
+        (action.payload === "api" &&
+          allVideogames.filter((el) => !el.created_in_db))
+
       return {
         ...state,
         videogames: originFiltered,
