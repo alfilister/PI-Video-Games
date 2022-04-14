@@ -83,7 +83,7 @@ function Home() {
       <div className={style.homeDiv}>
         <div>
           <Link to="/videogame">
-            <button className={style.btnCreate}>Crear videojuego</button>
+            <button className={style.btnCreate}>Create New Videogame</button>
           </Link>
         </div>
         <h1 className={style.mainTitle}>VIDEOJUEGOS</h1>

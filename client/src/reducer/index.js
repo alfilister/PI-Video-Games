@@ -27,6 +27,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         videogames: action.payload,
+        allvideogames: action.payload,
       }
 
     case GET_GENRES:
