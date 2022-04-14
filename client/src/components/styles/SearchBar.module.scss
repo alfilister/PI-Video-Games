@@ -5,9 +5,19 @@
 
   input {
     border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    color: whitesmoke;
   }
 
   button {
     margin-left: 0.5em;
+    background-color: rgba(31, 31, 31, 0.781);
+    color: whitesmoke;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: whitesmoke;
+      color: black;
+    }
   }
 }

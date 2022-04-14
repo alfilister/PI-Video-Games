@@ -8,6 +8,15 @@
   margin: 1em;
   width: 12em;
   height: 2em;
+
+  background-color: rgba(31, 31, 31, 0.781);
+  color: whitesmoke;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+  }
 }
 
 .mainTitle {
@@ -34,9 +43,27 @@
     width: auto;
     height: 2em;
     margin: auto 0.15em;
+
+    background-color: rgba(31, 31, 31, 0.781);
+    color: whitesmoke;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: rgb(255, 255, 255);
+      color: black;
+    }
   }
 
   button {
     margin-left: 2em;
+
+    background-color: rgba(31, 31, 31, 0.781);
+    color: whitesmoke;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: rgb(255, 255, 255);
+      color: black;
+    }
   }
 }
