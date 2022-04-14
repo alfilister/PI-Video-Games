@@ -1,4 +1,9 @@
-import { GET_VIDEOGAMES, FILTER_BY_ORIGIN } from "../action-types"
+import {
+  GET_VIDEOGAMES,
+  FILTER_BY_ORIGIN,
+  SORT_ALPHABETIC,
+  SORT_RATING,
+} from "../action-types"
 
 const initialState = {
   videogames: [],
@@ -26,6 +31,60 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         videogames: originFiltered,
+      }
+
+    case SORT_ALPHABETIC:
+      const sortedAzArr =
+        (action.payload === "asc" &&
+          state.videogames.sort((a, b) => {
+            if (a.name > b.name) {
+              return 1
+            }
+            if (b.name > a.name) {
+              return -1
+            }
+            return 0
+          })) ||
+        (action.payload === "des" &&
+          state.videogames.sort((a, b) => {
+            if (a.name > b.name) {
+              return -1
+            }
+            if (b.name > a.name) {
+              return 1
+            }
+            return 0
+          }))
+      return {
+        ...state,
+        videogames: sortedAzArr,
+      }
+
+    case SORT_RATING:
+      const sortedRatingArr =
+        (action.payload === "asc" &&
+          state.videogames.sort((a, b) => {
+            if (a.rating > b.rating) {
+              return 1
+            }
+            if (b.rating > a.rating) {
+              return -1
+            }
+            return 0
+          })) ||
+        (action.payload === "des" &&
+          state.videogames.sort((a, b) => {
+            if (a.rating > b.rating) {
+              return -1
+            }
+            if (b.rating > a.rating) {
+              return 1
+            }
+            return 0
+          }))
+      return {
+        ...state,
+        videogames: sortedRatingArr,
       }
 
     default:

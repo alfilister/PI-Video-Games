@@ -1,5 +1,10 @@
 import axios from "axios"
-const { GET_VIDEOGAMES, FILTER_BY_ORIGIN } = require("../action-types")
+const {
+  GET_VIDEOGAMES,
+  FILTER_BY_ORIGIN,
+  SORT_ALPHABETIC,
+  SORT_RATING,
+} = require("../action-types")
 
 export function getVideogames() {
   return async function (dispatch) {
@@ -18,6 +23,20 @@ export function getVideogames() {
 export function filterVideogamesByOrigin(payload) {
   return {
     type: FILTER_BY_ORIGIN,
+    payload,
+  }
+}
+
+export function sortVideogamesAz(payload) {
+  return {
+    type: SORT_ALPHABETIC,
+    payload,
+  }
+}
+
+export function sortVideogamesRating(payload) {
+  return {
+    type: SORT_RATING,
     payload,
   }
 }

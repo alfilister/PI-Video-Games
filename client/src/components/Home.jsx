@@ -2,7 +2,12 @@ import style from "./styles/Home.module.scss"
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { getVideogames, filterVideogamesByOrigin } from "../actions"
+import {
+  getVideogames,
+  filterVideogamesByOrigin,
+  sortVideogamesAz,
+  sortVideogamesRating,
+} from "../actions"
 import Card from "./Card"
 import Paginado from "./Paginado"
 
@@ -10,7 +15,9 @@ function Home() {
   const dispatch = useDispatch()
   const allVideogames = useSelector((state) => state.videogames)
 
-  const [origin, setOrigin] = useState("Origin")
+  const [origin, setOrigin] = useState("Filter By Origin")
+  const [sortAz, setSortAz] = useState("Sort A-Z")
+  const [sortRating, setSortRating] = useState("Sort Rating")
 
   const [currentPage, setCurrentPage] = useState(1)
   const videogamesPerPage = 15
@@ -29,15 +36,33 @@ function Home() {
     dispatch(getVideogames())
   }, [dispatch])
 
-  const handleClick = (e) => {
+  const handleReset = (e) => {
     e.preventDefault()
     dispatch(getVideogames())
+    setCurrentPage(1)
+    setOrigin("Filter By Origin")
+    setSortAz("Sort A-Z")
+    setSortRating("Sort Rating")
   }
 
   const handleFilterOrigin = (e) => {
     e.preventDefault()
     setOrigin(e.target.value)
     dispatch(filterVideogamesByOrigin(e.target.value))
+  }
+
+  const handleSortAz = (e) => {
+    e.preventDefault()
+    dispatch(sortVideogamesAz(e.target.value))
+    setCurrentPage(1)
+    setSortAz(e.target.value)
+  }
+
+  const handleSortRating = (e) => {
+    e.preventDefault()
+    dispatch(sortVideogamesRating(e.target.value))
+    setCurrentPage(1)
+    setSortRating(e.target.value)
   }
 
   return (
@@ -50,21 +75,23 @@ function Home() {
         </div>
         <h1 className={style.mainTitle}>VIDEOJUEGOS</h1>
         <div className={style.filterBar}>
-          <select>
-            <option value="ascNombre">Asc Alphabetic</option>
-            <option value="desNombre">Des Alphabetic</option>
+          <select value={sortAz} onChange={(e) => handleSortAz(e)}>
+            <option disabled>Sort A-Z</option>
+            <option value="asc">Asc</option>
+            <option value="des">Des</option>
           </select>
-          <select>
-            <option value="ascRating">Asc Rating</option>
-            <option value="desRating">Des Rating</option>
+          <select value={sortRating} onChange={(e) => handleSortRating(e)}>
+            <option disabled>Sort Rating</option>
+            <option value="asc">Asc</option>
+            <option value="des">Des</option>
           </select>
           <select value={origin} onChange={(e) => handleFilterOrigin(e)}>
-            <option disabled>Origin</option>
+            <option disabled>Filter By Origin</option>
             <option value="all">All</option>
             <option value="created">Created</option>
             <option value="api">Api</option>
           </select>
-          <button onClick={(e) => handleClick(e)}>Borrar filtros</button>
+          <button onClick={(e) => handleReset(e)}>Borrar filtros</button>
         </div>
 
         <Paginado
