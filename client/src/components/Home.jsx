@@ -12,6 +12,7 @@ import {
 } from "../actions"
 import Card from "./Card"
 import Paginado from "./Paginado"
+import SearchBar from "./SearchBar"
 
 function Home() {
   const dispatch = useDispatch()
@@ -86,6 +87,7 @@ function Home() {
           </Link>
         </div>
         <h1 className={style.mainTitle}>VIDEOJUEGOS</h1>
+        <SearchBar />
         <div className={style.filterBar}>
           <select value={sortAz} onChange={(e) => handleSortAz(e)}>
             <option disabled>Sort A-Z</option>
@@ -113,7 +115,7 @@ function Home() {
             <option value="created">Created</option>
             <option value="api">Api</option>
           </select>
-          <button onClick={(e) => handleReset(e)}>Borrar filtros</button>
+          <button onClick={(e) => handleReset(e)}>Reset Filters</button>
         </div>
 
         <Paginado

@@ -1,6 +1,7 @@
 import axios from "axios"
 const {
   GET_VIDEOGAMES,
+  GET_VIDEOGAMES_BY_NAME,
   GET_GENRES,
   FILTER_BY_ORIGIN,
   FILTER_BY_GENRE,
@@ -15,6 +16,22 @@ export function getVideogames() {
       var info = await axios.get("http://localhost:3001/api/videogames")
       return dispatch({
         type: GET_VIDEOGAMES,
+        payload: info.data.data,
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export function getVideogamesByName(payload) {
+  return async function (dispatch) {
+    try {
+      var info = await axios.get(
+        `http://localhost:3001/api/videogames?name=${payload}`
+      )
+      return dispatch({
+        type: GET_VIDEOGAMES_BY_NAME,
         payload: info.data.data,
       })
     } catch (err) {

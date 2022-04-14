@@ -1,5 +1,6 @@
 import {
   GET_VIDEOGAMES,
+  GET_VIDEOGAMES_BY_NAME,
   GET_GENRES,
   FILTER_BY_ORIGIN,
   FILTER_BY_GENRE,
@@ -20,6 +21,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         videogames: action.payload,
         allvideogames: action.payload,
+      }
+
+    case GET_VIDEOGAMES_BY_NAME:
+      return {
+        ...state,
+        videogames: action.payload,
       }
 
     case GET_GENRES:
