@@ -75,15 +75,15 @@ function VideogameCreate() {
     })
     dispatch(postVideogame(input))
     alert("Videogame succesfully created")
-    // setInput({
-    //   name: "",
-    //   description: "",
-    //   released: "",
-    //   rating: "",
-    //   genres: [],
-    //   platforms: [],
-    //   background_image: "",
-    // })
+    setInput({
+      name: "",
+      description: "",
+      released: "",
+      rating: "",
+      genres: [],
+      platforms: [],
+      background_image: "",
+    })
   }
 
   return (
