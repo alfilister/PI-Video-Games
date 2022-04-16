@@ -1,7 +1,6 @@
 const { Router } = require("express")
 const axios = require("axios")
 const { Videogame, Genre } = require("../db")
-const { API_KEY } = process.env
 const { getAllVideogames, getVideoName, getGenres } = require("../controllers")
 
 // Importar todos los routers;

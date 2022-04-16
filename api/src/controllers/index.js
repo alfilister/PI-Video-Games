@@ -64,25 +64,34 @@ const getAllVideogames = async () => {
 
 const getVideoName = async (id) => {
   try {
-    let idData = await axios.get(
-      `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
-    )
-    let response = idData.data
+    if (id.includes("-")) {
+      let dbInfo = await getDbInfo()
+      let dbVideoname = dbInfo.filter((el) => el.id === id)
 
-    if (response) {
-      let newFormat = {
-        background_image: response.background_image,
-        name: response.name,
-        description: response.description,
-        released: response.released,
-        rating: response.rating,
-        platforms: response.platforms.map((el) => el.platform.name),
-        genres: response.genres.map((el) => el.name),
-      }
+      console.log(dbVideoname)
 
-      return newFormat
+      return dbVideoname
     } else {
-      return undefined
+      let idData = await axios.get(
+        `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
+      )
+      let response = idData.data
+
+      if (response) {
+        let newFormat = {
+          background_image: response.background_image,
+          name: response.name,
+          description: response.description,
+          released: response.released,
+          rating: response.rating,
+          platforms: response.platforms.map((el) => el.platform.name),
+          genres: response.genres.map((el) => el.name),
+        }
+
+        return newFormat
+      } else {
+        return undefined
+      }
     }
   } catch (err) {
     console.log(err)

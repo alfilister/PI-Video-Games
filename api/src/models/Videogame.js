@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
       },
     },
     platforms: {
-      type: DataTypes.TEXT,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
     created_in_db: {

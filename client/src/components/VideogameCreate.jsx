@@ -5,8 +5,13 @@ import { postVideogame, getPlatforms } from "../actions"
 
 function VideogameCreate() {
   const dispatch = useDispatch()
-  const genres = useSelector((state) => state.allgenres)
-  const platforms = useSelector((state) => state.allplatforms)
+  const navigate = useNavigate()
+
+  const allgenres = useSelector((state) => state.allgenres)
+  const allplatforms = useSelector((state) => state.allplatforms)
+
+  var genresSelected = []
+  var platformsSelected = []
 
   const [input, setInput] = useState({
     name: "",
@@ -22,6 +27,52 @@ function VideogameCreate() {
     dispatch(getPlatforms())
   }, [dispatch])
 
+  const handleChange = (e) => {
+    e.preventDefault()
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleGenre = (e) => {
+    e.preventDefault()
+    genresSelected.includes(e.target.value)
+      ? (genresSelected = genresSelected.filter((el) => el !== e.target.value))
+      : genresSelected.push(e.target.value)
+    console.log(genresSelected)
+  }
+
+  const handlePlatform = (e) => {
+    e.preventDefault()
+    platformsSelected.includes(e.target.value)
+      ? (platformsSelected = platformsSelected.filter(
+          (el) => el !== e.target.value
+        ))
+      : platformsSelected.push(e.target.value)
+    console.log(platformsSelected)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setInput({
+      ...input,
+      genres: genresSelected,
+      platforms: platformsSelected,
+    })
+    dispatch(postVideogame(input))
+    alert("Videogame succesfully created")
+    setInput({
+      name: "",
+      description: "",
+      released: "",
+      rating: "",
+      genres: [],
+      platforms: [],
+      background_image: "",
+    })
+  }
+
   return (
     <>
       <div>
@@ -31,33 +82,89 @@ function VideogameCreate() {
           </Link>
         </div>
         <h1>Create your videogame</h1>
-        <form>
+        <div>
           <div>
-            <input value={input.name} type="text" placeholder="Name" />
+            <label>Name</label>
             <input
+              name="name"
+              onChange={(e) => handleChange(e)}
+              value={input.name}
+              type="text"
+              placeholder="Videogame Name"
+            />
+          </div>
+          <div>
+            <label>Description</label>
+            <input
+              name="description"
+              onChange={(e) => handleChange(e)}
               value={input.description}
               type="text"
               placeholder="Description of your game"
             />
-            <input value={input.released} type="date" />
+          </div>
+          <div>
+            <label>Release Date</label>
+
             <input
+              name="released"
+              onChange={(e) => handleChange(e)}
+              value={input.released}
+              type="text"
+              placeholder="dd/mm/yyyy"
+            />
+          </div>
+          <div>
+            <label>Rating</label>
+
+            <input
+              name="rating"
+              onChange={(e) => handleChange(e)}
               value={input.rating}
               type="text"
               placeholder="Between 0 and 5"
             />
-            <select>
-              <option disabled>Genres</option>
-            </select>
-            <select>
-              <option disabled>Platforms</option>
-            </select>
+          </div>
+          <div>
+            <label>Image</label>
+
             <input
+              name="background_image"
+              onChange={(e) => handleChange(e)}
               value={input.background_image}
               type="text"
-              placeholder="URL of your img"
+              placeholder="URL of the videogame img"
             />
           </div>
-        </form>
+          <br />
+          <div>
+            {allgenres.sort().map((el) => {
+              return (
+                <>
+                  <button value={el} onClick={(e) => handleGenre(e)}>
+                    {el}
+                  </button>
+                </>
+              )
+            })}
+          </div>
+          <br />
+          <div>
+            {allplatforms.sort().map((el) => {
+              return (
+                <>
+                  <button value={el} onClick={(e) => handlePlatform(e)}>
+                    {el}
+                  </button>
+                </>
+              )
+            })}
+          </div>
+          <br />
+          <button type="submit" onClick={(e) => handleSubmit(e)}>
+            Create Videogame
+          </button>
+        </div>
       </div>
     </>
   )

@@ -129,10 +129,10 @@ function Home() {
             return (
               <>
                 <Card
+                  key={el.id}
                   name={el.name}
                   background_image={el.background_image}
                   genres={el.genres}
-                  key={el.id}
                 />
               </>
             )
