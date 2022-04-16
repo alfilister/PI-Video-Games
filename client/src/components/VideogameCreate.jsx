@@ -1,3 +1,4 @@
+import style from "./styles/VideogameCreate.module.scss"
 import React, { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
@@ -35,8 +36,21 @@ function VideogameCreate() {
     })
   }
 
+  const changeColorBtn = (e) => {
+    const element = document.getElementById(e.target.value)
+    const elementClass = element.classList
+    if (elementClass == "VideogameCreate_btnSelect__I9u2h") {
+      element.classList.remove(elementClass)
+      element.classList.add("VideogameCreate_btnChossen__lIR8R")
+    } else {
+      element.classList.remove(elementClass)
+      element.classList.add("VideogameCreate_btnSelect__I9u2h")
+    }
+  }
+
   const handleGenre = (e) => {
     e.preventDefault()
+    changeColorBtn(e)
 
     if (input.genres.includes(e.target.value)) {
       setInput({
@@ -53,6 +67,7 @@ function VideogameCreate() {
 
   const handlePlatform = (e) => {
     e.preventDefault()
+    changeColorBtn(e)
     if (input.platforms.includes(e.target.value)) {
       setInput({
         ...input,
@@ -87,16 +102,16 @@ function VideogameCreate() {
   }
 
   return (
-    <>
-      <div>
-        <div>
+    <div className={style.generalCreate}>
+      <div className={style.createDiv}>
+        <div className={style.btnBack}>
           <Link to="/home">
             <button>Back to home</button>
           </Link>
         </div>
         <h1>Create your videogame</h1>
-        <div>
-          <div>
+        <form>
+          <div className={style.formElement}>
             <label>Name</label>
             <input
               name="name"
@@ -106,7 +121,7 @@ function VideogameCreate() {
               placeholder="Videogame Name"
             />
           </div>
-          <div>
+          <div className={style.formElement}>
             <label>Description</label>
             <input
               name="description"
@@ -116,7 +131,7 @@ function VideogameCreate() {
               placeholder="Description of your game"
             />
           </div>
-          <div>
+          <div className={style.formElement}>
             <label>Release Date</label>
 
             <input
@@ -127,7 +142,7 @@ function VideogameCreate() {
               placeholder="dd/mm/yyyy"
             />
           </div>
-          <div>
+          <div className={style.formElement}>
             <label>Rating</label>
 
             <input
@@ -138,7 +153,7 @@ function VideogameCreate() {
               placeholder="Between 0 and 5"
             />
           </div>
-          <div>
+          <div className={style.formElement}>
             <label>Image</label>
 
             <input
@@ -150,11 +165,18 @@ function VideogameCreate() {
             />
           </div>
           <br />
-          <div>
+          <h4>Choose the genres that apply to your videogame</h4>
+          <br />
+          <div className={style.formGenres}>
             {allgenres.sort().map((el) => {
               return (
                 <>
-                  <button value={el} onClick={(e) => handleGenre(e)}>
+                  <button
+                    id={el}
+                    className={style.btnSelect}
+                    value={el}
+                    onClick={(e) => handleGenre(e)}
+                  >
                     {el}
                   </button>
                 </>
@@ -162,11 +184,18 @@ function VideogameCreate() {
             })}
           </div>
           <br />
-          <div>
+          <h4>Choose the platforms that support your videogame</h4>
+          <br />
+          <div className={style.formPlatforms}>
             {allplatforms.sort().map((el) => {
               return (
                 <>
-                  <button value={el} onClick={(e) => handlePlatform(e)}>
+                  <button
+                    id={el}
+                    className={style.btnSelect}
+                    value={el}
+                    onClick={(e) => handlePlatform(e)}
+                  >
                     {el}
                   </button>
                 </>
@@ -174,12 +203,18 @@ function VideogameCreate() {
             })}
           </div>
           <br />
-          <button type="submit" onClick={(e) => handleSubmit(e)}>
-            Create Videogame
-          </button>
-        </div>
+          <div className={style.finalBtn}>
+            <button
+              className={style.btnSubmit}
+              type="submit"
+              onClick={(e) => handleSubmit(e)}
+            >
+              Create Videogame
+            </button>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
   )
 }
 
