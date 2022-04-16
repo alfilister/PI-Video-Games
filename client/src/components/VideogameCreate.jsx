@@ -37,20 +37,33 @@ function VideogameCreate() {
 
   const handleGenre = (e) => {
     e.preventDefault()
-    genresSelected.includes(e.target.value)
-      ? (genresSelected = genresSelected.filter((el) => el !== e.target.value))
-      : genresSelected.push(e.target.value)
-    console.log(genresSelected)
+
+    if (input.genres.includes(e.target.value)) {
+      setInput({
+        ...input,
+        genres: input.genres.filter((el) => el !== e.target.value),
+      })
+    } else {
+      setInput({
+        ...input,
+        genres: [...input.genres, e.target.value],
+      })
+    }
   }
 
   const handlePlatform = (e) => {
     e.preventDefault()
-    platformsSelected.includes(e.target.value)
-      ? (platformsSelected = platformsSelected.filter(
-          (el) => el !== e.target.value
-        ))
-      : platformsSelected.push(e.target.value)
-    console.log(platformsSelected)
+    if (input.platforms.includes(e.target.value)) {
+      setInput({
+        ...input,
+        platforms: input.platforms.filter((el) => el !== e.target.value),
+      })
+    } else {
+      setInput({
+        ...input,
+        platforms: [...input.platforms, e.target.value],
+      })
+    }
   }
 
   const handleSubmit = (e) => {
@@ -62,15 +75,15 @@ function VideogameCreate() {
     })
     dispatch(postVideogame(input))
     alert("Videogame succesfully created")
-    setInput({
-      name: "",
-      description: "",
-      released: "",
-      rating: "",
-      genres: [],
-      platforms: [],
-      background_image: "",
-    })
+    // setInput({
+    //   name: "",
+    //   description: "",
+    //   released: "",
+    //   rating: "",
+    //   genres: [],
+    //   platforms: [],
+    //   background_image: "",
+    // })
   }
 
   return (
