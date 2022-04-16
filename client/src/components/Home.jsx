@@ -132,7 +132,11 @@ function Home() {
                   key={el.id}
                   name={el.name}
                   background_image={el.background_image}
-                  genres={el.genres}
+                  genres={
+                    el.id.length > 25
+                      ? el.genres.map((el) => el.name)
+                      : el.genres
+                  }
                 />
               </>
             )
