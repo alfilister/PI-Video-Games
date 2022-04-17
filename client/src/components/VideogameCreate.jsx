@@ -123,7 +123,7 @@ function VideogameCreate() {
           </div>
           <div className={style.formElement}>
             <label>Description</label>
-            <input
+            <textarea
               name="description"
               onChange={(e) => handleChange(e)}
               value={input.description}
@@ -156,7 +156,7 @@ function VideogameCreate() {
           <div className={style.formElement}>
             <label>Image</label>
 
-            <input
+            <textarea
               name="background_image"
               onChange={(e) => handleChange(e)}
               value={input.background_image}
