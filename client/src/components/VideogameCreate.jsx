@@ -2,12 +2,23 @@ import style from "./styles/VideogameCreate.module.scss"
 import React, { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { postVideogame, getPlatforms } from "../actions"
+import {
+  postVideogame,
+  getPlatforms,
+  getGenres,
+  getVideogames,
+} from "../actions"
 
 function VideogameCreate() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const chargeList = async () => {
+    await dispatch(getVideogames())
+    dispatch(getPlatforms())
+  }
+
+  const allvideogames = useSelector((state) => state.videogames)
   const allgenres = useSelector((state) => state.allgenres)
   const allplatforms = useSelector((state) => state.allplatforms)
 
@@ -25,7 +36,8 @@ function VideogameCreate() {
   })
 
   useEffect(() => {
-    dispatch(getPlatforms())
+    !allvideogames.length ? chargeList() : dispatch(getPlatforms())
+    !allgenres.length && dispatch(getGenres())
   }, [dispatch])
 
   const handleChange = (e) => {
@@ -83,11 +95,7 @@ function VideogameCreate() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setInput({
-      ...input,
-      genres: genresSelected,
-      platforms: platformsSelected,
-    })
+
     dispatch(postVideogame(input))
     alert("Videogame succesfully created")
     setInput({
@@ -99,6 +107,7 @@ function VideogameCreate() {
       platforms: [],
       background_image: "",
     })
+    navigate("/home")
   }
 
   return (

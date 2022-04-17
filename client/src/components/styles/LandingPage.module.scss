@@ -17,7 +17,7 @@
 
   padding-top: 5em;
 
-  h1 {
+  @mixin h1($velocidad) {
     color: whitesmoke;
     font-size: 5em;
     font-weight: 500;
@@ -26,6 +26,28 @@
 
     font-family: "Press Start 2P", cursive;
     -webkit-text-stroke: 2px rgb(51, 51, 51);
+
+    animation-name: slidein;
+    animation-duration: $velocidad;
+
+    @keyframes slidein {
+      from {
+        margin-right: 100%;
+        color: rgba(245, 245, 245, 0);
+      }
+      to {
+        margin-right: 0%;
+        color: whitesmoke;
+      }
+    }
+  }
+
+  .video {
+    @include h1(4s);
+  }
+
+  .games {
+    @include h1(6s);
   }
 
   button {
@@ -41,5 +63,17 @@
     font-family: "Press Start 2P", cursive;
     color: rgb(255, 255, 255);
     -webkit-text-stroke: 2px rgb(113, 113, 113);
+
+    animation-name: appears;
+    animation-duration: 2s;
+
+    @keyframes appears {
+      from {
+        color: rgba(255, 255, 255, 0);
+      }
+      to {
+        color: white;
+      }
+    }
   }
 }

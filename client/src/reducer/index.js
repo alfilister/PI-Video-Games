@@ -15,6 +15,7 @@ const initialState = {
   allvideogames: [],
   allgenres: [],
   allplatforms: [],
+  videocharged: false,
 }
 
 function rootReducer(state = initialState, action) {
@@ -24,6 +25,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         videogames: action.payload,
         allvideogames: action.payload,
+        videocharged: true,
       }
 
     case GET_VIDEOGAMES_BY_NAME:
@@ -42,7 +44,7 @@ function rootReducer(state = initialState, action) {
     case GET_PLATFORMS:
       const toGetPlatforms = state.allvideogames
       var platformsFinal = []
-      const platformsFiltered = toGetPlatforms.map((el) => {
+      toGetPlatforms.map((el) => {
         el.platforms.map((el) => {
           !platformsFinal.includes(el) && platformsFinal.push(el)
         })
