@@ -86,7 +86,9 @@ function Home() {
             <button className={style.btnCreate}>Create New Videogame</button>
           </Link>
         </div>
-        <h1 className={style.mainTitle}>VIDEOJUEGOS</h1>
+        <div className={style.divTitle}>
+          <h1>VIDEOJUEGOS</h1>
+        </div>
         <SearchBar />
         <div className={style.filterBar}>
           <select value={sortAz} onChange={(e) => handleSortAz(e)}>

@@ -31,7 +31,7 @@ function SearchBar() {
           onChange={(e) => handleInputChange(e)}
           onKeyDown={(e) => handleKeyDown(e)}
           type="text"
-          placeholder="Type name to search"
+          placeholder="Type to search by name"
         />
         <button onClick={(e) => handleSubmit(e)} type="submit">
           Search
