@@ -1,6 +1,8 @@
 .generalCreate {
   background-image: url("../../miscellaneous/img2.jpg");
   background-position: right;
+  background-attachment: fixed;
+  overflow: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
