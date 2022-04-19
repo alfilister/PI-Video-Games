@@ -31,8 +31,8 @@
     .btnChossen {
       font-size: 1em;
       height: 2em;
-      background-color: rgb(156, 132, 0);
-      color: whitesmoke;
+      background-color: rgb(166, 0, 255);
+      color: rgb(235, 235, 235);
       border-radius: 5px;
       margin: 0.1rem 0.05rem;
 
@@ -40,12 +40,6 @@
         background-color: whitesmoke;
         color: black;
       }
-    }
-
-    .finalBtn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
     .btnBack {
@@ -68,23 +62,6 @@
       }
     }
 
-    .btnSubmit {
-      margin-top: 1em;
-      margin-bottom: 3em;
-      font-size: 1em;
-      font-family: "Press Start 2P", cursive;
-      height: 2.1em;
-      width: 20em;
-      background-color: black;
-      color: whitesmoke;
-      border-radius: 5px;
-
-      &:hover {
-        background-color: whitesmoke;
-        color: black;
-      }
-    }
-
     h1 {
       color: whitesmoke;
       font-size: 3em;
@@ -104,12 +81,12 @@
       input,
       textarea {
         width: 100%;
-        background-color: black;
+        background-color: rgb(0, 0, 0);
         color: rgb(170, 170, 170);
         border-radius: 5px;
       }
 
-      h4 {
+      .h4 {
         font-family: "Press Start 2P", cursive;
         text-align: center;
         font-size: 1.3rem;
@@ -118,9 +95,25 @@
         border-radius: 10px;
       }
 
+      .h4alert {
+        @extend .h4;
+        color: rgb(231, 227, 0);
+      }
+
       .formElement {
         margin: 1em 0;
         font-size: 1.5rem;
+      }
+
+      .formElementAlert {
+        @extend .formElement;
+        color: rgb(231, 227, 0);
+      }
+
+      .errText {
+        color: rgb(231, 227, 0);
+        font-size: small;
+        margin-top: 0;
       }
 
       .formGenres {
@@ -133,6 +126,39 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+      }
+    }
+    .finalBtn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btnSubmit {
+      margin-top: 1em;
+      margin-bottom: 3em;
+      font-size: 1em;
+      font-family: "Press Start 2P", cursive;
+      height: 2.1em;
+      width: 20em;
+      background-color: black;
+      color: whitesmoke;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: whitesmoke;
+        color: black;
+      }
+    }
+
+    .btnSumbitDisabled {
+      @extend .btnSubmit;
+      background-color: gray;
+      color: darkgray;
+
+      &:hover {
+        background-color: gray;
+        color: darkgray;
       }
     }
   }

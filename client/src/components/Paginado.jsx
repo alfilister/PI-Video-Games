@@ -15,7 +15,9 @@ export default function Paginado({
     <nav className={style.pagNav}>
       {pageNumbers &&
         pageNumbers.map((number) => (
-          <button onClick={() => paginado(number)}>{number}</button>
+          <button key={number} onClick={() => paginado(number)}>
+            {number}
+          </button>
         ))}
     </nav>
   )

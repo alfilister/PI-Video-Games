@@ -9,6 +9,44 @@ import {
   getVideogames,
 } from "../actions"
 
+const validate = (input) => {
+  let errors = {}
+  if (!input.name) {
+    errors.name = "Name is required to submit"
+  }
+  if (!input.description) {
+    errors.description = "description is required to submit"
+  }
+  if (!input.released) {
+    errors.released = "released is required to submit"
+  } else if (
+    !/^([1-9]|0[1-9]|1[012])([-])([1-9]|0[1-9]|[12][0-9]|3[01])\2(\d{4})$|^(\d{4})([-])([1-9]|0[1-9]|[12][0-9]|3[01])\6([1-9]|0[1-9]|[12][0-9]|3[01])$/.test(
+      input.released
+    )
+  ) {
+    errors.released = "the expected format of the date is yyyy-mm-dd"
+  }
+  if (!input.rating) {
+    errors.rating = "rating is required to submit"
+  } else if (!/((?=5)^[0-5][\d]*$|^[0-4](\.[0-9]?)?$)/.test(input.rating))
+    errors.rating = "rating must be 0 to 5 range with max one decimal"
+
+  if (input.genres.length === 0) {
+    errors.genres = "at least one genre is required to submit"
+  }
+  if (input.platforms.length === 0) {
+    errors.platforms = "at least one platform is required to submit"
+  }
+  if (!input.background_image) {
+    errors.background_image = "image URL is required to submit"
+  } else if (
+    !/(https?:\/\/.*\.(?:png|jpg|jpeg))/i.test(input.background_image)
+  ) {
+    errors.background_image = "here you have to input a valid URL format"
+  }
+  return errors
+}
+
 function VideogameCreate() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -18,12 +56,14 @@ function VideogameCreate() {
     dispatch(getPlatforms())
   }
 
+  useEffect(() => {
+    !allvideogames.length ? chargeList() : dispatch(getPlatforms())
+    !allgenres.length && dispatch(getGenres())
+  }, [dispatch])
+
   const allvideogames = useSelector((state) => state.videogames)
   const allgenres = useSelector((state) => state.allgenres)
   const allplatforms = useSelector((state) => state.allplatforms)
-
-  var genresSelected = []
-  var platformsSelected = []
 
   const [input, setInput] = useState({
     name: "",
@@ -35,10 +75,7 @@ function VideogameCreate() {
     background_image: "",
   })
 
-  useEffect(() => {
-    !allvideogames.length ? chargeList() : dispatch(getPlatforms())
-    !allgenres.length && dispatch(getGenres())
-  }, [dispatch])
+  const [errors, setErrors] = useState({})
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -46,6 +83,12 @@ function VideogameCreate() {
       ...input,
       [e.target.name]: e.target.value,
     })
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    )
   }
 
   const changeColorBtn = (e) => {
@@ -75,6 +118,12 @@ function VideogameCreate() {
         genres: [...input.genres, e.target.value],
       })
     }
+    setErrors(
+      validate({
+        ...input,
+        genres: e.target.value,
+      })
+    )
   }
 
   const handlePlatform = (e) => {
@@ -91,23 +140,40 @@ function VideogameCreate() {
         platforms: [...input.platforms, e.target.value],
       })
     }
+    setErrors(
+      validate({
+        ...input,
+        platforms: e.target.value,
+      })
+    )
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    dispatch(postVideogame(input))
-    alert("Videogame succesfully created")
-    setInput({
-      name: "",
-      description: "",
-      released: "",
-      rating: "",
-      genres: [],
-      platforms: [],
-      background_image: "",
-    })
-    navigate("/home")
+    if (
+      errors.name ||
+      errors.description ||
+      errors.released ||
+      errors.rating ||
+      errors.background_image ||
+      errors.genres ||
+      errors.platforms
+    ) {
+      alert(`Missing information in the form, please review again`)
+    } else {
+      dispatch(postVideogame(input))
+      alert("Videogame succesfully created")
+      setInput({
+        name: "",
+        description: "",
+        released: "",
+        rating: "",
+        genres: [],
+        platforms: [],
+        background_image: "",
+      })
+      navigate("/home")
+    }
   }
 
   return (
@@ -120,19 +186,29 @@ function VideogameCreate() {
         </div>
         <h1>Create your videogame</h1>
         <form>
-          <div className={style.formElement}>
+          <div
+            className={
+              !errors.name ? style.formElement : style.formElementAlert
+            }
+          >
             <label>Name</label>
             <input
+              key="name"
               name="name"
               onChange={(e) => handleChange(e)}
               value={input.name}
               type="text"
-              placeholder="Videogame Name"
+              placeholder="Name of your videogame"
             />
           </div>
-          <div className={style.formElement}>
+          <div
+            className={
+              !errors.description ? style.formElement : style.formElementAlert
+            }
+          >
             <label>Description</label>
             <textarea
+              key="description"
               name="description"
               onChange={(e) => handleChange(e)}
               value={input.description}
@@ -140,47 +216,77 @@ function VideogameCreate() {
               placeholder="Description of your game"
             />
           </div>
-          <div className={style.formElement}>
+          <div
+            className={
+              !errors.released ? style.formElement : style.formElementAlert
+            }
+          >
             <label>Release Date</label>
 
             <input
+              key="released"
               name="released"
               onChange={(e) => handleChange(e)}
               value={input.released}
-              type="text"
-              placeholder="dd/mm/yyyy"
+              type="date"
+              min={"1952-01-01"}
+              max={"2022-05-31"}
             />
+
+            {errors.released && (
+              <p className={style.errText}>{errors.released}</p>
+            )}
           </div>
-          <div className={style.formElement}>
+          <div
+            className={
+              !errors.rating ? style.formElement : style.formElementAlert
+            }
+          >
             <label>Rating</label>
 
             <input
+              key="rating"
               name="rating"
               onChange={(e) => handleChange(e)}
               value={input.rating}
               type="text"
               placeholder="Between 0 and 5"
             />
+            {errors.rating && <p className={style.errText}>{errors.rating}</p>}
           </div>
-          <div className={style.formElement}>
+          <div
+            className={
+              !errors.background_image
+                ? style.formElement
+                : style.formElementAlert
+            }
+          >
             <label>Image</label>
 
             <textarea
+              key="background_image"
               name="background_image"
               onChange={(e) => handleChange(e)}
               value={input.background_image}
               type="text"
-              placeholder="URL of the videogame img"
+              placeholder="URL of the videogame image"
             />
+            {errors.background_image && (
+              <p className={style.errText}>{errors.background_image}</p>
+            )}
           </div>
           <br />
-          <h4>Choose the genres that apply to your videogame</h4>
+          <h4 className={!errors.genres ? style.h4 : style.h4alert}>
+            Choose the genres that apply to your videogame
+          </h4>
+          {errors.genres && <p className={style.errText}>{errors.genres}</p>}
           <br />
           <div className={style.formGenres}>
             {allgenres.sort().map((el) => {
               return (
                 <>
                   <button
+                    key={el}
                     id={el}
                     className={style.btnSelect}
                     value={el}
@@ -193,13 +299,19 @@ function VideogameCreate() {
             })}
           </div>
           <br />
-          <h4>Choose the platforms that support your videogame</h4>
+          <h4 className={!errors.platforms ? style.h4 : style.h4alert}>
+            Choose the platforms that support your videogame
+          </h4>
+          {errors.platforms && (
+            <p className={style.errText}>{errors.platforms}</p>
+          )}
           <br />
           <div className={style.formPlatforms}>
             {allplatforms.sort().map((el) => {
               return (
                 <>
                   <button
+                    key={el}
                     id={el}
                     className={style.btnSelect}
                     value={el}
@@ -213,13 +325,12 @@ function VideogameCreate() {
           </div>
           <br />
           <div className={style.finalBtn}>
-            <button
+            <input
               className={style.btnSubmit}
               type="submit"
               onClick={(e) => handleSubmit(e)}
-            >
-              Create Videogame
-            </button>
+              value="Create"
+            />
           </div>
         </form>
       </div>

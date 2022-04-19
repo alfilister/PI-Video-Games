@@ -81,9 +81,9 @@ function Home() {
   return (
     <>
       <div className={style.homeDiv}>
-        <div>
+        <div className={style.btnCreate}>
           <Link to="/create">
-            <button className={style.btnCreate}>Create New Videogame</button>
+            <button>Create New Videogame</button>
           </Link>
         </div>
         <div className={style.divTitle}>
@@ -106,7 +106,9 @@ function Home() {
             {allGenres.map((genre) => {
               return (
                 <>
-                  <option value={genre}>{genre}</option>
+                  <option key={genre} value={genre}>
+                    {genre}
+                  </option>
                 </>
               )
             })}
