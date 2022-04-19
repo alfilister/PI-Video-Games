@@ -13,12 +13,16 @@ const validate = (input) => {
   let errors = {}
   if (!input.name) {
     errors.name = "Name is required to submit"
-  } else if (!/^.{1,25}$/.test(input.name))
+  } else if (!/^.{1,25}$/.test(input.name)) {
     errors.name = "Max length 25 characters"
+  } else if (!/^\S.*$/.test(input.name))
+    errors.name = "First character can not be an space"
   if (!input.description) {
     errors.description = "description is required to submit"
-  } else if (!/^.{1,100}$/.test(input.description))
+  } else if (!/^.{1,100}$/.test(input.description)) {
     errors.description = "Max length 100 characters"
+  } else if (!/^\S.*$/.test(input.description))
+    errors.description = "First character could not be an space"
   if (!input.released) {
     errors.released = "released is required to submit"
   } else if (
@@ -30,7 +34,7 @@ const validate = (input) => {
   }
   if (!input.rating) {
     errors.rating = "rating is required to submit"
-  } else if (!/((?=5)^[0-5][\d]*$|^[0-4](\.[0-9]?)?$)/.test(input.rating))
+  } else if (!/((?=5)^[0-5]?$|^[0-4](\.[0-9]?)?$)/.test(input.rating))
     errors.rating = "rating must be 0 to 5 range with max one decimal"
 
   if (input.genres.length === 0) {
@@ -42,10 +46,13 @@ const validate = (input) => {
   if (!input.background_image) {
     errors.background_image = "image URL is required to submit"
   } else if (
-    !/(https?:\/\/.*\.(?:png|jpg|jpeg))/i.test(input.background_image)
+    !/(https?:\/\/.*\.(?:png|jpg|jpeg))/i.test(input.background_image) ||
+    /\s+\S*$/.test(input.background_image)
   ) {
-    errors.background_image = "here you have to input a valid URL format"
-  }
+    errors.background_image =
+      "here you have to input a valid URL format to png, jpg or jpeg without initial or final space"
+  } else if (!/^\S.*$/.test(input.background_image))
+    errors.background_image = "First character could not be an space"
   return errors
 }
 
