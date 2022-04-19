@@ -13,10 +13,12 @@ const validate = (input) => {
   let errors = {}
   if (!input.name) {
     errors.name = "Name is required to submit"
-  }
+  } else if (!/^.{1,25}$/.test(input.name))
+    errors.name = "Max length 25 characters"
   if (!input.description) {
     errors.description = "description is required to submit"
-  }
+  } else if (!/^.{1,100}$/.test(input.description))
+    errors.description = "Max length 100 characters"
   if (!input.released) {
     errors.released = "released is required to submit"
   } else if (
@@ -200,6 +202,7 @@ function VideogameCreate() {
               type="text"
               placeholder="Name of your videogame"
             />
+            {errors.name && <p className={style.errText}>{errors.name}</p>}
           </div>
           <div
             className={
@@ -215,6 +218,9 @@ function VideogameCreate() {
               type="text"
               placeholder="Description of your game"
             />
+            {errors.description && (
+              <p className={style.errText}>{errors.description}</p>
+            )}
           </div>
           <div
             className={
@@ -279,7 +285,7 @@ function VideogameCreate() {
           <h4 className={!errors.genres ? style.h4 : style.h4alert}>
             Choose the genres that apply to your videogame
           </h4>
-          {errors.genres && <p className={style.errText}>{errors.genres}</p>}
+          {!input.genres[0] && <p className={style.errText}>{errors.genres}</p>}
           <br />
           <div className={style.formGenres}>
             {allgenres.sort().map((el) => {
@@ -302,7 +308,7 @@ function VideogameCreate() {
           <h4 className={!errors.platforms ? style.h4 : style.h4alert}>
             Choose the platforms that support your videogame
           </h4>
-          {errors.platforms && (
+          {!input.platforms[0] && (
             <p className={style.errText}>{errors.platforms}</p>
           )}
           <br />
@@ -326,7 +332,28 @@ function VideogameCreate() {
           <br />
           <div className={style.finalBtn}>
             <input
-              className={style.btnSubmit}
+              disabled={
+                input.name === "" ||
+                input.description === "" ||
+                input.released === "" ||
+                input.rating === "" ||
+                !input.genres[0] ||
+                !input.platforms[0] ||
+                input.background_image === ""
+                  ? true
+                  : false
+              }
+              className={
+                input.name === "" ||
+                input.description === "" ||
+                input.released === "" ||
+                input.rating === "" ||
+                !input.genres[0] ||
+                !input.platforms[0] ||
+                input.background_image === ""
+                  ? style.btnSubmitDisabled
+                  : style.btnSubmit
+              }
               type="submit"
               onClick={(e) => handleSubmit(e)}
               value="Create"
