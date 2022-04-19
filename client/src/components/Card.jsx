@@ -1,7 +1,8 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import style from "./styles/Card.module.scss"
 
-function Card({ background_image, name, genres }) {
+function Card({ background_image, name, genres, id }) {
   return (
     <>
       <div className={style.card}>

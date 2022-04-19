@@ -131,18 +131,24 @@ function Home() {
         <div className={style.cardSpace}>
           {currentVideogames?.map((el) => {
             return (
-              <>
-                <Card
-                  key={el.id}
-                  name={el.name}
-                  background_image={el.background_image}
-                  genres={
-                    el.id.length > 25
-                      ? el.genres.map((el) => el.name)
-                      : el.genres
-                  }
-                />
-              </>
+              <Link
+                to={`/videogame/${el.id}`}
+                style={{ textDecoration: "none" }}
+              >
+                <>
+                  <Card
+                    key={el.id}
+                    id={el.id}
+                    name={el.name}
+                    background_image={el.background_image}
+                    genres={
+                      el.id.length > 25
+                        ? el.genres.map((el) => el.name)
+                        : el.genres
+                    }
+                  />
+                </>
+              </Link>
             )
           })}
         </div>

@@ -67,6 +67,20 @@ export function getPlatforms() {
   }
 }
 
+export function getDetail(id) {
+  return async function (dispatch) {
+    try {
+      var detail = await axios.get(`http://localhost:3001/api/videogames/${id}`)
+      return dispatch({
+        type: GET_DETAIL,
+        payload: detail.data,
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
 export function postVideogame(payload) {
   return async function (dispatch) {
     try {

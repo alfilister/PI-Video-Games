@@ -3,6 +3,7 @@ import {
   GET_VIDEOGAMES_BY_NAME,
   GET_GENRES,
   GET_PLATFORMS,
+  GET_DETAIL,
   FILTER_BY_ORIGIN,
   FILTER_BY_GENRE,
   SORT_ALPHABETIC,
@@ -16,6 +17,7 @@ const initialState = {
   allgenres: [],
   allplatforms: [],
   videocharged: false,
+  detail: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -53,6 +55,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allplatforms: platformsFinal,
+      }
+
+    case GET_DETAIL:
+      return {
+        ...state,
+        detail: action.payload,
       }
 
     case POST_VIDEOGAME:
