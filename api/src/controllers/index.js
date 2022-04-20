@@ -66,9 +66,8 @@ const getVideoName = async (id) => {
   try {
     if (id.includes("-")) {
       let dbInfo = await getDbInfo()
-      let dbVideoname = dbInfo.filter((el) => el.id === id)
-
-      console.log(dbVideoname)
+      let dbData = dbInfo.filter((el) => el.id === id)
+      var dbVideoname = dbData[0]
 
       return dbVideoname
     } else {

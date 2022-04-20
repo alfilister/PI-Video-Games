@@ -131,10 +131,7 @@ function Home() {
         <div className={style.cardSpace}>
           {currentVideogames?.map((el) => {
             return (
-              <Link
-                to={`/videogame/${el.id}`}
-                style={{ textDecoration: "none" }}
-              >
+              <Link to={`/detail/${el.id}`} style={{ textDecoration: "none" }}>
                 <>
                   <Card
                     key={el.id}
