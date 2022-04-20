@@ -1,7 +1,7 @@
-import style from "./styles/SearchBar.module.scss"
+import style from "../styles/SearchBar.module.scss"
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
-import { getVideogamesByName } from "../actions"
+import { getVideogamesByName } from "../redux/actions"
 
 function SearchBar() {
   const dispatch = useDispatch()

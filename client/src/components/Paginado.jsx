@@ -1,4 +1,4 @@
-import style from "./styles/Paginado.module.scss"
+import style from "../styles/Paginado.module.scss"
 import React from "react"
 
 export default function Paginado({

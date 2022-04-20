@@ -1,4 +1,4 @@
-import style from "./styles/VideogameCreate.module.scss"
+import style from "../styles/VideogameCreate.module.scss"
 import React, { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
@@ -7,7 +7,7 @@ import {
   getPlatforms,
   getGenres,
   getVideogames,
-} from "../actions"
+} from "../redux/actions"
 
 const validate = (input) => {
   let errors = {}

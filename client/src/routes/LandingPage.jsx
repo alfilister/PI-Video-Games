@@ -1,8 +1,8 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { getGenres, getVideogames } from "../actions"
-import style from "./styles/LandingPage.module.scss"
+import { getGenres, getVideogames } from "../redux/actions"
+import style from "../styles/LandingPage.module.scss"
 
 function LandingPage() {
   const dispatch = useDispatch()

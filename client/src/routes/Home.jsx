@@ -1,4 +1,4 @@
-import style from "./styles/Home.module.scss"
+import style from "../styles/Home.module.scss"
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
@@ -9,10 +9,10 @@ import {
   sortVideogamesRating,
   getGenres,
   filterVideogamesByGenre,
-} from "../actions"
-import Card from "./Card"
-import Paginado from "./Paginado"
-import SearchBar from "./SearchBar"
+} from "../redux/actions"
+import Card from "../components/Card"
+import Paginado from "../components/Paginado"
+import SearchBar from "../components/SearchBar"
 
 function Home() {
   const dispatch = useDispatch()
