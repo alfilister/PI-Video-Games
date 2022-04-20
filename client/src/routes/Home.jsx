@@ -135,7 +135,7 @@ function Home() {
                 <>
                   <Card
                     key={el.id}
-                    id={el.id}
+                    rating={el.rating}
                     name={el.name}
                     background_image={el.background_image}
                     genres={

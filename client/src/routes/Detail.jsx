@@ -14,6 +14,8 @@ function Detail() {
 
   const vGame = useSelector((state) => state.detail)
 
+  const handleClick = () => {}
+
   return (
     <>
       <div className={style.detailDiv}>
