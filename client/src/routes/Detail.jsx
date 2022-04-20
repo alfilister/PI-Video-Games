@@ -14,8 +14,6 @@ function Detail() {
 
   const vGame = useSelector((state) => state.detail)
 
-  const handleClick = () => {}
-
   return (
     <>
       <div className={style.detailDiv}>
@@ -57,7 +55,7 @@ function Detail() {
             </div>
           </div>
         ) : (
-          <p>Videogame not found</p>
+          <h1>Loading...</h1>
         )}
         <div className={style.detBack}>
           <Link to="/home">

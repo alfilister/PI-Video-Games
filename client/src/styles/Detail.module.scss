@@ -10,19 +10,17 @@
   justify-content: center;
   padding-top: 3em;
 
+  h1 {
+    font-family: "Press Start 2P", cursive;
+    color: whitesmoke;
+    font-size: 2em;
+    text-align: center;
+  }
+
   .detData {
     display: flex;
     flex-direction: column;
     margin: 0 1.5em;
-
-    .detTitle {
-      h1 {
-        font-family: "Press Start 2P", cursive;
-        color: whitesmoke;
-        font-size: 2em;
-        text-align: center;
-      }
-    }
 
     .detImg {
       display: flex;
