@@ -34,15 +34,12 @@ export function getVideogamesByName(payload) {
       var info = await axios.get(
         `http://localhost:3001/api/videogames?name=${payload}`
       )
-      if (info.data.status === "notFound") {
-        return alert("")
-      }
       return dispatch({
         type: GET_VIDEOGAMES_BY_NAME,
         payload: info.data.data,
       })
     } catch (err) {
-      console.log(err)
+      return alert("There is no match with any videogame in our database")
     }
   }
 }
