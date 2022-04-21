@@ -1,0 +1,84 @@
+.homeDiv {
+  background-image: url("../miscellaneous/img2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  background-attachment: fixed;
+  overflow: scroll;
+}
+
+.btnCreate {
+  margin: 1em;
+
+  button {
+    font-size: 0.8em;
+    font-family: "Press Start 2P", cursive;
+    height: 3em;
+    width: 12em;
+    background-color: rgba(31, 31, 31, 0.781);
+    color: whitesmoke;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: whitesmoke;
+      color: black;
+    }
+  }
+}
+
+.divTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    background-color: rgba(0, 0, 0, 0.503);
+    padding: 0.2em 0.3em;
+    border-radius: 10px;
+    text-decoration: wavy;
+    font-family: "Press Start 2P", cursive;
+    color: whitesmoke;
+    font-size: 4em;
+    -webkit-text-stroke: 2px rgb(59, 59, 59);
+  }
+}
+
+.filterBar {
+  display: flex;
+  justify-content: center;
+  margin: 1.5em auto;
+
+  select {
+    width: auto;
+    height: 2em;
+    margin: auto 0.15em;
+
+    background-color: rgba(31, 31, 31, 0.781);
+    color: whitesmoke;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: rgb(255, 255, 255);
+      color: black;
+    }
+  }
+
+  button {
+    margin-left: 2em;
+
+    background-color: rgba(31, 31, 31, 0.781);
+    color: whitesmoke;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: rgb(255, 255, 255);
+      color: black;
+    }
+  }
+}
+
+.cardSpace {
+  display: grid;
+  grid-template-columns: 32vw 33vw 32vw;
+  margin: 1em auto 1em 0.5em;
+}
