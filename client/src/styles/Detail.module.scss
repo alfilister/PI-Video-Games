@@ -29,13 +29,14 @@
       justify-content: center;
       img {
         border-radius: 20px;
-        height: 50%;
-        width: 50%;
+        max-height: 40vh;
+        max-width: 40vw;
       }
     }
 
     .detText {
-      height: fit-content;
+      overflow: scroll;
+      max-height: 40vh;
       margin: 1em;
       border-radius: 20px;
       color: whitesmoke;
