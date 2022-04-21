@@ -56,7 +56,7 @@ function Detail() {
           </div>
         ) : (
           <div className={style.response}>
-            <h1>ID not found in our database!</h1>
+            <h1>ID not found!</h1>
           </div>
         )}
         <div className={style.detBack}>
