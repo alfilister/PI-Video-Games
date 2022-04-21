@@ -9,7 +9,6 @@ function SearchBar() {
   const [name, setName] = useState("")
 
   const handleInputChange = (e) => {
-    e.preventDefault()
     setName(e.target.value)
   }
 
