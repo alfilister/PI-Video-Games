@@ -103,12 +103,12 @@ function VideogameCreate() {
   const changeColorBtn = (e) => {
     const element = document.getElementById(e.target.value)
     const elementClass = element.classList
-    if (elementClass == "VideogameCreate_btnSelect__I9u2h") {
+    if (elementClass == "VideogameCreate_btnSelect__6cbqd") {
       element.classList.remove(elementClass)
-      element.classList.add("VideogameCreate_btnChossen__lIR8R")
+      element.classList.add("VideogameCreate_btnChossen__c4ust")
     } else {
       element.classList.remove(elementClass)
-      element.classList.add("VideogameCreate_btnSelect__I9u2h")
+      element.classList.add("VideogameCreate_btnSelect__6cbqd")
     }
   }
 
@@ -297,9 +297,8 @@ function VideogameCreate() {
           <div className={style.formGenres}>
             {allgenres.sort().map((el) => {
               return (
-                <>
+                <div key={el}>
                   <button
-                    key={el}
                     id={el}
                     className={style.btnSelect}
                     value={el}
@@ -307,7 +306,7 @@ function VideogameCreate() {
                   >
                     {el}
                   </button>
-                </>
+                </div>
               )
             })}
           </div>
@@ -322,9 +321,8 @@ function VideogameCreate() {
           <div className={style.formPlatforms}>
             {allplatforms.sort().map((el) => {
               return (
-                <>
+                <div key={el}>
                   <button
-                    key={el}
                     id={el}
                     className={style.btnSelect}
                     value={el}
@@ -332,7 +330,7 @@ function VideogameCreate() {
                   >
                     {el}
                   </button>
-                </>
+                </div>
               )
             })}
           </div>

@@ -55,7 +55,9 @@ function Detail() {
             </div>
           </div>
         ) : (
-          <h1>Loading...</h1>
+          <div className={style.response}>
+            <h1>ID not found in our database!</h1>
+          </div>
         )}
         <div className={style.detBack}>
           <Link to="/home">

@@ -105,11 +105,9 @@ function Home() {
             <option disabled>Filter By Genre</option>
             {allGenres.map((genre) => {
               return (
-                <>
-                  <option key={genre} value={genre}>
-                    {genre}
-                  </option>
-                </>
+                <option key={genre} value={genre}>
+                  {genre}
+                </option>
               )
             })}
           </select>
@@ -131,10 +129,13 @@ function Home() {
         <div className={style.cardSpace}>
           {currentVideogames?.map((el) => {
             return (
-              <Link to={`/detail/${el.id}`} style={{ textDecoration: "none" }}>
-                <>
+              <div key={el.id}>
+                <Link
+                  to={`/detail/${el.id}`}
+                  style={{ textDecoration: "none" }}
+                >
                   <Card
-                    key={el.id}
+                    id={el.id}
                     rating={el.rating}
                     name={el.name}
                     background_image={el.background_image}
@@ -144,8 +145,8 @@ function Home() {
                         : el.genres
                     }
                   />
-                </>
-              </Link>
+                </Link>
+              </div>
             )
           })}
         </div>

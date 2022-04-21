@@ -39,7 +39,7 @@
       margin: 1em;
       border-radius: 20px;
       color: whitesmoke;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 0, 0, 0.7);
       font-size: 1.2em;
       text-align: center;
     }
@@ -50,13 +50,38 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 0 1em;
+    margin: 1em 1em;
     color: whitesmoke;
     font-size: 1.2em;
     text-align: center;
 
+    h4 {
+      margin: 0.5em 1em;
+    }
+
     span {
       color: rgb(186, 183, 0);
+    }
+  }
+
+  .response {
+    h1 {
+      font-family: "Press Start 2P", cursive;
+      text-align: center;
+      animation-name: slidein;
+      animation-duration: 10s;
+      margin-bottom: 2em;
+
+      @keyframes slidein {
+        from {
+          font-size: 1px;
+          color: rgba(255, 0, 0, 0);
+        }
+        to {
+          font-size: 2em;
+          color: whitesmoke;
+        }
+      }
     }
   }
 
