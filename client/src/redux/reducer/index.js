@@ -5,6 +5,7 @@ import {
   GET_PLATFORMS,
   GET_DETAIL,
   RESET_DETAIL,
+  RESET_FILTERS,
   FILTER_BY_ORIGIN,
   FILTER_BY_GENRE,
   SORT_ALPHABETIC,
@@ -15,6 +16,7 @@ import {
 const initialState = {
   videogames: [],
   allvideogames: [],
+  videoreset: [],
   allgenres: [],
   allplatforms: [],
   videocharged: false,
@@ -28,6 +30,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         videogames: action.payload,
         allvideogames: action.payload,
+        videoreset: action.payload,
         videocharged: true,
       }
 
@@ -47,11 +50,11 @@ function rootReducer(state = initialState, action) {
     case GET_PLATFORMS:
       const toGetPlatforms = state.allvideogames
       var platformsFinal = []
-      toGetPlatforms.map((el) => {
-        el.platforms.map((el) => {
-          !platformsFinal.includes(el) && platformsFinal.push(el)
-        })
-      })
+      toGetPlatforms.map((el) =>
+        el.platforms.map(
+          (el) => !platformsFinal.includes(el) && platformsFinal.push(el)
+        )
+      )
 
       return {
         ...state,
@@ -68,6 +71,13 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         detail: [],
+      }
+
+    case RESET_FILTERS:
+      const reset = state.videoreset
+      return {
+        ...state,
+        videogames: reset,
       }
 
     case POST_VIDEOGAME:

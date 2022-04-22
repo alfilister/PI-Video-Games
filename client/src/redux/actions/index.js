@@ -1,5 +1,4 @@
 import axios from "axios"
-import { Navigate, Router } from "react-router-dom"
 const {
   GET_VIDEOGAMES,
   GET_VIDEOGAMES_BY_NAME,
@@ -7,6 +6,7 @@ const {
   GET_PLATFORMS,
   GET_DETAIL,
   RESET_DETAIL,
+  RESET_FILTERS,
 
   FILTER_BY_ORIGIN,
   FILTER_BY_GENRE,
@@ -83,6 +83,12 @@ export function getDetail(id) {
 export function resetDetail() {
   return {
     type: RESET_DETAIL,
+  }
+}
+
+export function resetFilters() {
+  return {
+    type: RESET_FILTERS,
   }
 }
 

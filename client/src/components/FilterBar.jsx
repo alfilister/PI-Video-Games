@@ -9,6 +9,7 @@ import {
   filterVideogamesByGenre,
   sortVideogamesAz,
   sortVideogamesRating,
+  resetFilters,
 } from "../redux/actions"
 import Card from "../components/Card"
 import Paginado from "../components/Paginado"
@@ -43,7 +44,7 @@ function FilterBar() {
 
   const handleReset = (e) => {
     e.preventDefault()
-    dispatch(getVideogames())
+    dispatch(resetFilters())
     setCurrentPage(1)
     setOrigin("Filter By Origin")
     setGenre("Filter By Genre")
