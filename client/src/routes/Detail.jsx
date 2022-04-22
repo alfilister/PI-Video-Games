@@ -9,9 +9,9 @@ function Detail() {
   const { id } = useParams()
 
   useEffect(() => {
-    dispatch(resetDetail())
     dispatch(getDetail(id))
-  }, [id])
+    return () => dispatch(resetDetail())
+  }, [dispatch])
 
   const vGame = useSelector((state) => state.detail)
 
