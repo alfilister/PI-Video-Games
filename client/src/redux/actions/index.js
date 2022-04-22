@@ -1,10 +1,12 @@
 import axios from "axios"
+import { Navigate, Router } from "react-router-dom"
 const {
   GET_VIDEOGAMES,
   GET_VIDEOGAMES_BY_NAME,
   GET_GENRES,
   GET_PLATFORMS,
   GET_DETAIL,
+  RESET_DETAIL,
 
   FILTER_BY_ORIGIN,
   FILTER_BY_GENRE,
@@ -39,7 +41,7 @@ export function getVideogamesByName(payload) {
         payload: info.data.data,
       })
     } catch (err) {
-      return alert("There is no match with any videogame in our database")
+      return alert("There is no match with any NAME in our database")
     }
   }
 }
@@ -73,8 +75,14 @@ export function getDetail(id) {
         payload: detail.data,
       })
     } catch (err) {
-      console.log(err)
+      return alert("There is no match with any ID in our database")
     }
+  }
+}
+
+export function resetDetail() {
+  return {
+    type: RESET_DETAIL,
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { getDetail } from "../redux/actions"
+import { getDetail, resetDetail } from "../redux/actions"
 import style from "../styles/Detail.module.scss"
 
 function Detail() {
@@ -9,6 +9,7 @@ function Detail() {
   const { id } = useParams()
 
   useEffect(() => {
+    dispatch(resetDetail())
     dispatch(getDetail(id))
   }, [id])
 

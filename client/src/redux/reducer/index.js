@@ -4,6 +4,7 @@ import {
   GET_GENRES,
   GET_PLATFORMS,
   GET_DETAIL,
+  RESET_DETAIL,
   FILTER_BY_ORIGIN,
   FILTER_BY_GENRE,
   SORT_ALPHABETIC,
@@ -61,6 +62,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         detail: action.payload,
+      }
+
+    case RESET_DETAIL:
+      return {
+        ...state,
+        detail: [],
       }
 
     case POST_VIDEOGAME:
