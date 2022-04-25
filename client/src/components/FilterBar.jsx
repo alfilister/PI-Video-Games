@@ -55,18 +55,21 @@ function FilterBar() {
   const handleFilterOrigin = (e) => {
     e.preventDefault()
     setOrigin(e.target.value)
+    setGenre("Filter By Genre")
     dispatch(filterVideogamesByOrigin(e.target.value))
   }
 
   const handleFilterGenre = (e) => {
     e.preventDefault()
     setGenre(e.target.value)
+    setOrigin("Filter By Origin")
     dispatch(filterVideogamesByGenre(e.target.value))
   }
 
   const handleSortAz = (e) => {
     e.preventDefault()
     dispatch(sortVideogamesAz(e.target.value))
+    setSortRating("Sort Rating")
     setCurrentPage(1)
     setSortAz(e.target.value)
   }
@@ -74,6 +77,7 @@ function FilterBar() {
   const handleSortRating = (e) => {
     e.preventDefault()
     dispatch(sortVideogamesRating(e.target.value))
+    setSortAz("Sort A-Z")
     setCurrentPage(1)
     setSortRating(e.target.value)
   }
