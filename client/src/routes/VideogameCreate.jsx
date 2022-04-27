@@ -172,15 +172,6 @@ function VideogameCreate() {
     } else {
       dispatch(postVideogame(input))
       alert("Videogame succesfully created")
-      setInput({
-        name: "",
-        description: "",
-        released: "",
-        rating: "",
-        genres: [],
-        platforms: [],
-        background_image: "",
-      })
       navigate("/home")
     }
   }

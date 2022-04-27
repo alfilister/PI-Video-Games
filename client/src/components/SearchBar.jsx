@@ -32,7 +32,12 @@ function SearchBar() {
           type="text"
           placeholder="Type to search by name"
         />
-        <button onClick={(e) => handleSubmit(e)} type="submit">
+        <button
+          onClick={(e) => handleSubmit(e)}
+          disabled={!name.length && true}
+          className={name === "" ? style.btnDisabled : style.button}
+          type="submit"
+        >
           Search
         </button>
       </div>

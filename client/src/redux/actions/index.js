@@ -19,11 +19,9 @@ const {
 export function getVideogames() {
   return async function (dispatch) {
     try {
-      var info = await axios.get("http://localhost:3001/api/videogames")
-      return dispatch({
-        type: GET_VIDEOGAMES,
-        payload: info.data.data,
-      })
+      await fetch("http://localhost:3001/api/videogames")
+        .then((response) => response.json())
+        .then((info) => dispatch({ type: GET_VIDEOGAMES, payload: info.data }))
     } catch (err) {
       console.log(err)
     }
@@ -33,13 +31,11 @@ export function getVideogames() {
 export function getVideogamesByName(payload) {
   return async function (dispatch) {
     try {
-      var info = await axios.get(
-        `http://localhost:3001/api/videogames?name=${payload}`
-      )
-      return dispatch({
-        type: GET_VIDEOGAMES_BY_NAME,
-        payload: info.data.data,
-      })
+      await fetch(`http://localhost:3001/api/videogames?name=${payload}`)
+        .then((response) => response.json())
+        .then((info) =>
+          dispatch({ type: GET_VIDEOGAMES_BY_NAME, payload: info.data.data })
+        )
     } catch (err) {
       return alert("There is no match with any NAME in our database")
     }
