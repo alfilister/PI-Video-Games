@@ -55,7 +55,6 @@ function rootReducer(state = initialState, action) {
           (el) => !platformsFinal.includes(el) && platformsFinal.push(el)
         )
       )
-
       return {
         ...state,
         allplatforms: platformsFinal,

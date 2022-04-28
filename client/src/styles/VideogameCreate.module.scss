@@ -68,7 +68,8 @@
       font-weight: 500;
       text-align: center;
       margin: 0;
-
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 20px;
       font-family: "Press Start 2P", cursive;
       -webkit-text-stroke: 2px rgb(51, 51, 51);
     }
@@ -77,6 +78,11 @@
       margin: 1em;
       color: whitesmoke;
       width: 60vw;
+
+      label {
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 10px;
+      }
 
       input,
       textarea {
@@ -112,6 +118,8 @@
 
       .errText {
         color: rgb(231, 227, 0);
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 10px;
         font-size: small;
         margin-top: 0;
       }

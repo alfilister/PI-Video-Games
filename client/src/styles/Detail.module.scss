@@ -12,9 +12,13 @@
 
   h1 {
     font-family: "Press Start 2P", cursive;
+
     color: whitesmoke;
     font-size: 2em;
     text-align: center;
+
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
   }
 
   .detData {
@@ -40,7 +44,7 @@
       margin: 1em;
       border-radius: 20px;
       color: whitesmoke;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.8);
       font-size: 1.2em;
       text-align: center;
     }
@@ -58,6 +62,8 @@
 
     h4 {
       margin: 0.5em 1em;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 5px;
     }
 
     span {

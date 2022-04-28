@@ -31,13 +31,15 @@ export function getVideogames() {
 export function getVideogamesByName(payload) {
   return async function (dispatch) {
     try {
-      await fetch(`http://localhost:3001/api/videogames?name=${payload}`)
-        .then((response) => response.json())
-        .then((info) =>
-          dispatch({ type: GET_VIDEOGAMES_BY_NAME, payload: info.data.data })
-        )
-    } catch (err) {
-      return alert("There is no match with any NAME in our database")
+      const info = await axios.get(
+        `http://localhost:3001/api/videogames?name=${payload}`
+      )
+      return dispatch({
+        type: GET_VIDEOGAMES_BY_NAME,
+        payload: info.data.data,
+      })
+    } catch (error) {
+      return alert("There is no coincidence by Name")
     }
   }
 }
@@ -65,13 +67,15 @@ export function getPlatforms() {
 export function getDetail(id) {
   return async function (dispatch) {
     try {
-      var detail = await axios.get(`http://localhost:3001/api/videogames/${id}`)
+      const detail = await axios.get(
+        `http://localhost:3001/api/videogames/${id}`
+      )
       return dispatch({
         type: GET_DETAIL,
         payload: detail.data,
       })
     } catch (err) {
-      return alert("There is no match with any ID in our database")
+      console.log("There is no match with any ID in our database")
     }
   }
 }

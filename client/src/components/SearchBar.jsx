@@ -24,7 +24,7 @@ function SearchBar() {
 
   return (
     <>
-      <div className={style.srchBar}>
+      <form onSubmit={(e) => handleSubmit(e)} className={style.srchBar}>
         <input
           value={name}
           onChange={(e) => handleInputChange(e)}
@@ -32,15 +32,13 @@ function SearchBar() {
           type="text"
           placeholder="Type to search by name"
         />
-        <button
-          onClick={(e) => handleSubmit(e)}
+        <input
           disabled={!name.length && true}
           className={name === "" ? style.btnDisabled : style.button}
           type="submit"
-        >
-          Search
-        </button>
-      </div>
+          value={"Search by Name"}
+        />
+      </form>
     </>
   )
 }

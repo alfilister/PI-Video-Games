@@ -11,18 +11,26 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(25),
       allowNull: false,
     },
     background_image: {
       type: DataTypes.STRING,
+      validate: {
+        is: /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i,
+
+        is: /(https?:\/\/.*\.(?:png|jpg|jpeg))/i,
+      },
     },
     description: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     released: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATEONLY,
+      validate: {
+        is: /^([1-9]|0[1-9]|1[012])([-])([1-9]|0[1-9]|[12][0-9]|3[01])\2(\d{4})$|^(\d{4})([-])([1-9]|0[1-9]|[12][0-9]|3[01])\6([1-9]|0[1-9]|[12][0-9]|3[01])$/,
+      },
     },
     rating: {
       type: DataTypes.FLOAT,
