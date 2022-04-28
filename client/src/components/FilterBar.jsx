@@ -48,8 +48,6 @@ function FilterBar() {
     setCurrentPage(1)
     setOrigin("Filter By Origin")
     setGenre("Filter By Genre")
-    setSortAz("Sort A-Z")
-    setSortRating("Sort Rating")
   }
 
   const handleFilterOrigin = (e) => {
