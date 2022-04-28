@@ -21,6 +21,29 @@
     border-radius: 20px;
   }
 
+  .btnDelete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      font-size: 1em;
+      font-family: "Press Start 2P", cursive;
+      height: 2em;
+      width: 20em;
+      margin-bottom: 2em;
+      background-color: black;
+      color: whitesmoke;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: rgb(94, 0, 0);
+        color: rgb(255, 255, 255);
+      }
+    }
+  }
+
   .detData {
     display: flex;
     flex-direction: column;

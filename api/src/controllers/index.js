@@ -109,6 +109,56 @@ const getVideogameById = async (id) => {
   }
 }
 
+const postVideogame = async (body) => {
+  const {
+    name,
+    background_image,
+    description,
+    released,
+    rating,
+    platforms,
+    genres,
+  } = body
+
+  let videoCreated = await Videogame.create({
+    name,
+    background_image,
+    description,
+    released,
+    rating,
+    platforms,
+  })
+
+  let genresDb = await Genre.findAll({
+    where: { name: genres },
+  })
+
+  videoCreated.addGenre(genresDb)
+
+  return videoCreated
+}
+
+const deleteVideogame = async (id) => {
+  try {
+    await Videogame.destroy({
+      where: {
+        id: id,
+      },
+    })
+    return await Videogame.findAll({
+      include: {
+        model: Genre,
+        attributes: ["name"],
+        through: {
+          attributes: [],
+        },
+      },
+    })
+  } catch (err) {
+    console.log("Videogame ID not exist in DB")
+  }
+}
+
 const getGenres = async () => {
   try {
     const genresApi = await axios.get(
@@ -133,5 +183,7 @@ module.exports = {
   getAllVideogames,
   getVideogameByName,
   getVideogameById,
+  postVideogame,
+  deleteVideogame,
   getGenres,
 }

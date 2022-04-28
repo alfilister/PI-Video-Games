@@ -11,6 +11,9 @@ const {
   FILTER_BY_ORIGIN,
   FILTER_BY_GENRE,
 
+  POST_VIDEOGAME,
+  DELETE_VIDEOGAME,
+
   SORT_ALPHABETIC,
   SORT_RATING,
   SORT_GENRE,
@@ -93,13 +96,31 @@ export function resetFilters() {
 }
 
 export function postVideogame(payload) {
-  return async function (dispatch) {
+  return async function () {
     try {
       const response = await axios.post(
         "http://localhost:3001/api/videogames",
         payload
       )
-      return response
+      return {
+        type: POST_VIDEOGAME,
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export function deleteVideogame(id) {
+  return async function (dispatch) {
+    try {
+      const detail = await axios.delete(
+        `http://localhost:3001/api/videogames/${id}`
+      )
+      return dispatch({
+        type: DELETE_VIDEOGAME,
+        payload: detail.data,
+      })
     } catch (err) {
       console.log(err)
     }

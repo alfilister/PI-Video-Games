@@ -1,11 +1,12 @@
 import style from "../styles/Detail.module.scss"
 import React, { useEffect } from "react"
-import { Link, useParams } from "react-router-dom"
-import { getDetail, resetDetail } from "../redux/actions"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { deleteVideogame, getDetail, resetDetail } from "../redux/actions"
 import { connect } from "react-redux"
 
 export function Detail(props) {
   const { id } = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
     props.getDetail(id)
@@ -17,6 +18,12 @@ export function Detail(props) {
 
   const { vGame } = props
 
+  const handleDelete = (e, id) => {
+    e.preventDefault(e)
+    props.deleteVideogame(id)
+    navigate("/home")
+  }
+
   return (
     <>
       <div className={style.detailDiv}>
@@ -26,6 +33,13 @@ export function Detail(props) {
               <div className={style.detTitle}>
                 <h1>{vGame.name}</h1>
               </div>
+              {vGame.created_in_db && (
+                <div className={style.btnDelete}>
+                  <button onClick={(e) => handleDelete(e, id)}>
+                    Delete Videogame
+                  </button>
+                </div>
+              )}
               <div className={style.detImg}>
                 <img
                   src={vGame.background_image}
@@ -87,6 +101,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getDetail: (id) => dispatch(getDetail(id)),
   resetDetail: () => dispatch(resetDetail()),
+  deleteVideogame: (id) => dispatch(deleteVideogame(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail)

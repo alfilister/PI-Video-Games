@@ -4,6 +4,8 @@ const {
   getAllVideogames,
   getVideogameByName,
   getVideogameById,
+  postVideogame,
+  deleteVideogame,
 } = require("../controllers")
 
 const router = Router()
@@ -50,34 +52,24 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    const {
-      name,
-      background_image,
-      description,
-      released,
-      rating,
-      platforms,
-      genres,
-    } = req.body
-
-    let videoCreated = await Videogame.create({
-      name,
-      background_image,
-      description,
-      released,
-      rating,
-      platforms,
-    })
-
-    let genresDb = await Genre.findAll({
-      where: { name: genres },
-    })
-
-    videoCreated.addGenre(genresDb)
-
-    res.json({
+    const videoCreated = await postVideogame(req.body)
+    res.status(201).json({
       status: "Videogame succesfully created",
       dataProvided: videoCreated,
+    })
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const result = await deleteVideogame(id)
+
+    res.json({
+      status: `Videogame with id: ${id} succesfully deleted`,
+      dataRemainInDb: result,
     })
   } catch (err) {
     next(err)

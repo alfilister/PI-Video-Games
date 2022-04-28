@@ -4,13 +4,14 @@ import {
   GET_GENRES,
   GET_PLATFORMS,
   GET_DETAIL,
+  POST_VIDEOGAME,
+  DELETE_VIDEOGAME,
   RESET_DETAIL,
   RESET_FILTERS,
   FILTER_BY_ORIGIN,
   FILTER_BY_GENRE,
   SORT_ALPHABETIC,
   SORT_RATING,
-  POST_VIDEOGAME,
 } from "../action-types"
 
 const initialState = {
@@ -81,6 +82,13 @@ function rootReducer(state = initialState, action) {
 
     case POST_VIDEOGAME:
       return { state }
+
+    case DELETE_VIDEOGAME:
+      const list = state.videogames
+      return {
+        ...state,
+        videogames: list,
+      }
 
     case FILTER_BY_ORIGIN:
       const toFilterByOrigin = state.allvideogames
