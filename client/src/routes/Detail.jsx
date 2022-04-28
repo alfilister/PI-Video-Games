@@ -1,19 +1,21 @@
+import style from "../styles/Detail.module.scss"
 import React, { useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
 import { getDetail, resetDetail } from "../redux/actions"
-import style from "../styles/Detail.module.scss"
+import { connect } from "react-redux"
 
-function Detail() {
-  const dispatch = useDispatch()
+export function Detail(props) {
   const { id } = useParams()
 
   useEffect(() => {
-    dispatch(getDetail(id))
-    return () => dispatch(resetDetail())
-  }, [dispatch])
+    props.getDetail(id)
 
-  const vGame = useSelector((state) => state.detail)
+    return () => {
+      props.resetDetail()
+    }
+  }, [id])
+
+  const { vGame } = props
 
   return (
     <>
@@ -70,4 +72,13 @@ function Detail() {
   )
 }
 
-export default Detail
+const mapStateToProps = (state) => ({
+  vGame: state.detail,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  getDetail: (id) => dispatch(getDetail(id)),
+  resetDetail: () => dispatch(resetDetail()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Detail)
