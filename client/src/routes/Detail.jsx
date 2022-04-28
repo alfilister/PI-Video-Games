@@ -27,7 +27,15 @@ export function Detail(props) {
                 <h1>{vGame.name}</h1>
               </div>
               <div className={style.detImg}>
-                <img src={vGame.background_image} alt="VideoImage" />
+                <img
+                  src={vGame.background_image}
+                  alt="VideoImage"
+                  onError={(e) => {
+                    e.target.onerror = null
+                    e.target.src =
+                      "https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg"
+                  }}
+                />
               </div>
               <div
                 className={style.detText}

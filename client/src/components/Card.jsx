@@ -11,7 +11,7 @@ class Card extends React.Component {
         <h3>{name}</h3>
         <img
           src={background_image}
-          // alt="videoGame img"
+          alt="videoGame-img"
           onError={(e) => {
             e.target.onerror = null
             e.target.src =

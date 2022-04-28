@@ -1,7 +1,12 @@
 const { Router } = require("express")
 const axios = require("axios")
 const { Videogame, Genre } = require("../db")
-const { getAllVideogames, getVideoName, getGenres } = require("../controllers")
+const {
+  getAllVideogames,
+  getVideogameByName,
+  getVideogameById,
+  getGenres,
+} = require("../controllers")
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -14,20 +19,15 @@ router.get("/videogames", async (req, res, next) => {
     const { name } = req.query
 
     if (name) {
-      const videoName = totalVideogames.filter((el) =>
-        el.name.toLowerCase().includes(name.toLowerCase())
-      )
-      if (videoName.length) {
-        let videoSlice = videoName.slice(0, 15)
-        res.status(200).json({
-          status: "found",
-          quantity_found: videoName.length,
-          quantity_shown: videoSlice.length,
-          data: videoSlice,
-        })
-      } else {
-        res.status(404).json({ status: "notFound" })
-      }
+      const response = getVideogameByName(name, totalVideogames)
+      response.videoSlice
+        ? res.status(200).json({
+            status: "found",
+            quantity_found: response.videoName.length,
+            quantity_shown: response.videoSlice.length,
+            data: response.videoSlice,
+          })
+        : res.status(404).json({ status: "notFound" })
     } else {
       res.status(200).json({
         length: totalVideogames.length,
@@ -43,7 +43,7 @@ router.get("/videogames/:id", async (req, res, next) => {
   try {
     const { id } = req.params
 
-    const response = await getVideoName(id)
+    const response = await getVideogameById(id)
 
     response
       ? res.status(200).send(response)

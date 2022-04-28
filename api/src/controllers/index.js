@@ -62,7 +62,19 @@ const getAllVideogames = async () => {
   }
 }
 
-const getVideoName = async (id) => {
+const getVideogameByName = (name, totalVideogames) => {
+  const videoName = totalVideogames.filter((el) =>
+    el.name.toLowerCase().includes(name.toLowerCase())
+  )
+  if (videoName.length) {
+    let videoSlice = videoName.slice(0, 15)
+    return { videoSlice, videoName }
+  } else {
+    return undefined
+  }
+}
+
+const getVideogameById = async (id) => {
   try {
     if (id.includes("-")) {
       let dbInfo = await getDbInfo()
@@ -119,6 +131,7 @@ const getGenres = async () => {
 
 module.exports = {
   getAllVideogames,
-  getVideoName,
+  getVideogameByName,
+  getVideogameById,
   getGenres,
 }

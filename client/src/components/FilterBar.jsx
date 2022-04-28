@@ -119,25 +119,32 @@ function FilterBar() {
       />
 
       <div className={style.cardSpace}>
-        {currentVideogames?.map((el) => {
-          return (
-            <div key={el.id}>
-              <Link to={`/detail/${el.id}`} style={{ textDecoration: "none" }}>
-                <Card
-                  id={el.id}
-                  rating={el.rating}
-                  name={el.name}
-                  background_image={el.background_image}
-                  genres={
-                    el.id.length > 25
-                      ? el.genres.map((el) => el.name)
-                      : el.genres
-                  }
-                />
-              </Link>
-            </div>
-          )
-        })}
+        {currentVideogames.length ? (
+          currentVideogames.map((el) => {
+            return (
+              <div key={el.id}>
+                <Link
+                  to={`/detail/${el.id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Card
+                    id={el.id}
+                    rating={el.rating}
+                    name={el.name}
+                    background_image={el.background_image}
+                    genres={
+                      el.id.length > 25
+                        ? el.genres.map((el) => el.name)
+                        : el.genres
+                    }
+                  />
+                </Link>
+              </div>
+            )
+          })
+        ) : (
+          <h1>There is no results to show on your selection</h1>
+        )}
       </div>
       <Paginado
         videogamesPerPage={videogamesPerPage}
