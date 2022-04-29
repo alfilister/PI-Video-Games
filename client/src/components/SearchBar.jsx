@@ -48,7 +48,7 @@ function SearchBar() {
           placeholder="Type to search by name"
         />
         <input
-          disabled={errors && true}
+          disabled={errors || name === "" ? true : false}
           className={
             name === "" || errors !== "" ? style.btnDisabled : style.button
           }

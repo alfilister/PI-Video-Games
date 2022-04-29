@@ -18,6 +18,15 @@ function FilterBar() {
   const dispatch = useDispatch()
   const allVideogames = useSelector((state) => state.videogames)
   const allGenres = useSelector((state) => state.allgenres)
+  const charged = useSelector((state) => state.videocharged)
+
+  const validateStatus = () => {
+    if (!allVideogames[0] && !charged) {
+      return <h1>Loading...</h1>
+    } else {
+      return <h1>There is no match with your filtered search</h1>
+    }
+  }
 
   const [origin, setOrigin] = useState("Filter By Origin")
   const [genre, setGenre] = useState("Filter By Genre")
@@ -119,32 +128,30 @@ function FilterBar() {
       />
 
       <div className={style.cardSpace}>
-        {currentVideogames.length ? (
-          currentVideogames.map((el) => {
-            return (
-              <div key={el.id}>
-                <Link
-                  to={`/detail/${el.id}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Card
-                    id={el.id}
-                    rating={el.rating}
-                    name={el.name}
-                    background_image={el.background_image}
-                    genres={
-                      el.id.length > 25
-                        ? el.genres.map((el) => el.name)
-                        : el.genres
-                    }
-                  />
-                </Link>
-              </div>
-            )
-          })
-        ) : (
-          <h1>There is no results to show on your selection</h1>
-        )}
+        {currentVideogames.length
+          ? currentVideogames.map((el) => {
+              return (
+                <div key={el.id}>
+                  <Link
+                    to={`/detail/${el.id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Card
+                      id={el.id}
+                      rating={el.rating}
+                      name={el.name}
+                      background_image={el.background_image}
+                      genres={
+                        el.id.length > 25
+                          ? el.genres.map((el) => el.name)
+                          : el.genres
+                      }
+                    />
+                  </Link>
+                </div>
+              )
+            })
+          : validateStatus()}
       </div>
       <Paginado
         videogamesPerPage={videogamesPerPage}
