@@ -42,6 +42,14 @@ function FilterBar() {
     indexLastVideogame
   )
 
+  const nxtPage = (maxPages) => {
+    if (currentPage < maxPages) setCurrentPage(currentPage + 1)
+  }
+
+  const prvPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1)
+  }
+
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber)
   }
@@ -125,6 +133,9 @@ function FilterBar() {
         videogamesPerPage={videogamesPerPage}
         allVideogames={allVideogames.length}
         paginado={paginado}
+        nxtPage={nxtPage}
+        prvPage={prvPage}
+        currentPage={currentPage}
       />
 
       <div className={style.cardSpace}>
@@ -157,6 +168,9 @@ function FilterBar() {
         videogamesPerPage={videogamesPerPage}
         allVideogames={allVideogames.length}
         paginado={paginado}
+        nxtPage={nxtPage}
+        prvPage={prvPage}
+        currentPage={currentPage}
       />
     </>
   )

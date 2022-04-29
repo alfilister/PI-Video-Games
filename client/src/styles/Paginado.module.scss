@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
 
-  button {
+  .pagBtn {
     border-style: none;
     border-radius: 15px;
     font-size: 1rem;
@@ -12,6 +12,30 @@
 
     margin: 0.2rem;
     width: 3.5rem;
+    height: 2rem;
+
+    &:hover {
+      background-color: rgb(228, 228, 228);
+      color: black;
+    }
+
+    &:focus {
+      background-color: rgba(6, 40, 75, 0.6);
+      color: rgb(255, 255, 255);
+    }
+  }
+
+  .btnNxtPrv {
+    border-style: none;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-weight: 800;
+    color: whitesmoke;
+    background-color: rgba(0, 0, 0, 0.781);
+    border: 1px solid rgb(59, 59, 59);
+
+    margin: 0.2rem;
+    width: 4rem;
     height: 2rem;
 
     &:hover {
