@@ -146,7 +146,6 @@ function FilterBar() {
                           ? el.genres.map((el) => el.name)
                           : el.genres
                       }
-                      esrb_rating={el.esrb_rating}
                     />
                   </Link>
                 </div>

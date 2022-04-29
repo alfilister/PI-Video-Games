@@ -21,7 +21,6 @@ const getApiInfo = async () => {
           rating: el.rating,
           platforms: el.platforms.map((el) => el.platform.name),
           genres: el.genres.map((el) => el.name),
-          esrb_rating: el.esrb_rating,
         }
       })
 

@@ -3,7 +3,7 @@ import style from "../styles/Card.module.scss"
 
 class Card extends React.Component {
   render() {
-    const { background_image, name, genres, rating, esrb_rating } = this.props
+    const { background_image, name, genres, rating } = this.props
 
     return (
       <div className={style.card}>
@@ -19,9 +19,6 @@ class Card extends React.Component {
           }}
         />
         <h5>{genres.join(" / ")}</h5>
-        <h6>
-          <span>ESRB</span> - {esrb_rating.name}
-        </h6>
       </div>
     )
   }
