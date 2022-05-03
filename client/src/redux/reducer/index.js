@@ -106,13 +106,21 @@ function rootReducer(state = initialState, action) {
 
     case FILTER_BY_GENRE:
       const toFilterByGenre = state.allvideogames
+
+      const dbToFilter = state.allvideogames.filter((el) => el.created_in_db)
+      const dbGenreFiltered = dbToFilter.filter((el) =>
+        el.genres.map((el) => el.name).includes(action.payload)
+      )
+
       const genreFiltered = toFilterByGenre.filter((el) =>
         el.genres.includes(action.payload)
       )
 
+      const finalGenresFilter = dbGenreFiltered.concat(genreFiltered)
+
       return {
         ...state,
-        videogames: genreFiltered,
+        videogames: finalGenresFilter,
       }
 
     case SORT_ALPHABETIC:
