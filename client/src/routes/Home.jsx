@@ -16,7 +16,7 @@ function Home() {
           </Link>
         </div>
         <div className={style.divTitle}>
-          <h1>VIDEOJUEGOS</h1>
+          <h1>VIDEOGAMES</h1>
         </div>
         <SearchBar />
         <FilterBar />
