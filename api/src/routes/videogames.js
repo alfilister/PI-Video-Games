@@ -6,7 +6,7 @@ const {
   getVideogameById,
   postVideogame,
   deleteVideogame,
-} = require("../controllers")
+} = require("../controllers/videogame")
 
 const router = Router()
 

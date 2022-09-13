@@ -1,6 +1,6 @@
 const { Router } = require("express")
 const { Genre } = require("../db")
-const { getGenres } = require("../controllers")
+const { getGenres } = require("../controllers/genre")
 
 const router = Router()
 

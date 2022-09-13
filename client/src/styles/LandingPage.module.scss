@@ -1,4 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@font-face {
+  font-family: "Press Start 2P";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../miscellaneous/fonts/player2p/press-start-2p-v14-latin-regular.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../miscellaneous/fonts/player2p/press-start-2p-v14-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("../miscellaneous/fonts/player2p/press-start-2p-v14-latin-regular.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("../miscellaneous/fonts/player2p/press-start-2p-v14-latin-regular.woff")
+      format("woff"),
+    /* Modern Browsers */
+      url("../miscellaneous/fonts/player2p/press-start-2p-v14-latin-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../miscellaneous/fonts/player2p/press-start-2p-v14-latin-regular.svg#PressStart2P")
+      format("svg"); /* Legacy iOS */
+}
 
 .landing {
   background-image: url("../miscellaneous/img.jpg");
