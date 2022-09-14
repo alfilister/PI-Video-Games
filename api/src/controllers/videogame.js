@@ -161,6 +161,8 @@ const deleteVideogame = async (id) => {
 
 module.exports = {
   getAllVideogames,
+  getDbInfo,
+  getApiInfo,
   getVideogameByName,
   getVideogameById,
   postVideogame,

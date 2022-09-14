@@ -18,9 +18,9 @@ export function Detail(props) {
 
   const { vGame } = props
 
-  const handleDelete = (e, id) => {
+  const handleDelete = async (e, id) => {
     e.preventDefault(e)
-    props.deleteVideogame(id)
+    await props.deleteVideogame(id)
     navigate("/home")
   }
 

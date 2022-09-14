@@ -2,6 +2,8 @@ const { Router } = require("express")
 const { Videogame, Genre } = require("../db")
 const {
   getAllVideogames,
+  getApiInfo,
+  getDbInfo,
   getVideogameByName,
   getVideogameById,
   postVideogame,
@@ -31,6 +33,24 @@ router.get("/", async (req, res, next) => {
         data: totalVideogames,
       })
     }
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get("/db", async (req, res, next) => {
+  try {
+    let dbVideoGames = await getDbInfo()
+    res.send(dbVideoGames)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get("/api", async (req, res, next) => {
+  try {
+    let apiVideogames = await getApiInfo()
+    res.send(apiVideogames)
   } catch (err) {
     next(err)
   }

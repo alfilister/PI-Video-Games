@@ -1,6 +1,8 @@
 import axios from "axios"
 const {
   GET_VIDEOGAMES,
+  GET_DBGAMES,
+  GET_APIGAMES,
   GET_VIDEOGAMES_BY_NAME,
   GET_GENRES,
   GET_PLATFORMS,
@@ -25,6 +27,36 @@ export function getVideogames() {
       await fetch("http://localhost:3001/api/videogames")
         .then((response) => response.json())
         .then((info) => dispatch({ type: GET_VIDEOGAMES, payload: info.data }))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export function getDbGames() {
+  return async function (dispatch) {
+    try {
+      let dbData = await axios("http://localhost:3001/api/videogames/db")
+
+      return dispatch({
+        type: GET_DBGAMES,
+        payload: dbData.data,
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export function getApiGames() {
+  return async function (dispatch) {
+    try {
+      let apiData = await axios("http://localhost:3001/api/videogames/api")
+
+      return dispatch({
+        type: GET_APIGAMES,
+        payload: apiData.data,
+      })
     } catch (err) {
       console.log(err)
     }

@@ -1,5 +1,7 @@
 import {
   GET_VIDEOGAMES,
+  GET_DBGAMES,
+  GET_APIGAMES,
   GET_VIDEOGAMES_BY_NAME,
   GET_GENRES,
   GET_PLATFORMS,
@@ -15,6 +17,8 @@ import {
 } from "../action-types"
 
 const initialState = {
+  dbGames: null,
+  apiGames: null,
   videogames: [],
   allvideogames: [],
   videoreset: [],
@@ -32,6 +36,33 @@ function rootReducer(state = initialState, action) {
         videogames: action.payload,
         allvideogames: action.payload,
         videoreset: action.payload,
+        videocharged: true,
+      }
+
+    case GET_DBGAMES:
+      if (!state.apiGames) {
+        return {
+          ...state,
+          dbGames: action.payload,
+        }
+      } else {
+        return {
+          ...state,
+          dbGames: action.payload,
+          videogames: [...action.payload, ...state.apiGames],
+          allvideogames: [...action.payload, ...state.apiGames],
+          videoreset: [...action.payload, ...state.apiGames],
+          videocharged: true,
+        }
+      }
+
+    case GET_APIGAMES:
+      return {
+        ...state,
+        apiGames: action.payload,
+        videogames: [...state.dbGames, ...action.payload],
+        allvideogames: [...state.dbGames, ...action.payload],
+        videoreset: [...state.dbGames, ...action.payload],
         videocharged: true,
       }
 

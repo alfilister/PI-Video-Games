@@ -1,7 +1,6 @@
 import style from "../styles/Home.module.scss"
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
 
 import SearchBar from "../components/SearchBar"
 import FilterBar from "../components/FilterBar"

@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  getVideogames,
   getGenres,
   filterVideogamesByOrigin,
   filterVideogamesByGenre,
   sortVideogamesAz,
   sortVideogamesRating,
   resetFilters,
+  getApiGames,
+  getDbGames,
 } from "../redux/actions"
 import Card from "../components/Card"
 import Paginado from "../components/Paginado"
@@ -55,9 +56,12 @@ function FilterBar() {
   }
 
   useEffect(() => {
-    dispatch(getVideogames())
+    if (!charged) {
+      dispatch(getDbGames())
+      dispatch(getApiGames())
+    }
     dispatch(getGenres())
-  }, [dispatch])
+  }, [dispatch, charged])
 
   const handleReset = (e) => {
     e.preventDefault()
