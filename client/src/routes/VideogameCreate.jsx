@@ -10,6 +10,11 @@ import {
   getDbGames,
 } from "../redux/actions"
 
+import Swal from "sweetalert2"
+import withReactContent from "sweetalert2-react-content"
+import "sweetalert2/src/sweetalert2.scss"
+const MySwal = withReactContent(Swal)
+
 const validate = (input) => {
   let errors = {}
   if (!input.name) {
@@ -175,10 +180,18 @@ function VideogameCreate() {
       errors.genres ||
       errors.platforms
     ) {
-      alert(`Missing information in the form, please review again`)
+      MySwal.fire(
+        "Missing information",
+        "Review the form options again",
+        "error"
+      )
     } else {
       dispatch(postVideogame(input))
-      alert("Videogame succesfully created")
+      MySwal.fire(
+        "Videogame Created",
+        "Now you will see it in Homepage",
+        "success"
+      )
       navigate("/home")
     }
   }
