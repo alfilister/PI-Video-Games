@@ -7,6 +7,7 @@ import {
   getPlatforms,
   getGenres,
   getVideogames,
+  getDbGames,
 } from "../redux/actions"
 
 const validate = (input) => {

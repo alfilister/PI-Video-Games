@@ -59,8 +59,10 @@ function FilterBar() {
     if (!charged) {
       dispatch(getDbGames())
       dispatch(getApiGames())
+      dispatch(getGenres())
+    } else {
+      dispatch(getDbGames())
     }
-    dispatch(getGenres())
   }, [dispatch, charged])
 
   const handleReset = (e) => {

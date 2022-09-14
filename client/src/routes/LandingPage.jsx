@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { getGenres, getVideogames } from "../redux/actions"
+import { getGenres, getDbGames, getApiGames } from "../redux/actions"
 import style from "../styles/LandingPage.module.scss"
 
 function LandingPage() {
@@ -17,8 +17,9 @@ function LandingPage() {
   }
 
   useEffect(() => {
+    dispatch(getDbGames())
+    dispatch(getApiGames())
     dispatch(getGenres())
-    dispatch(getVideogames())
   }, [dispatch])
 
   return (
