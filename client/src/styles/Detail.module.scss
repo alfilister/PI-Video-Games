@@ -10,15 +10,18 @@
   justify-content: center;
   padding-top: 3em;
 
-  h1 {
-    font-family: "Press Start 2P", cursive;
+  .detTitle {
+    margin-top: 5em;
+    h1 {
+      font-family: "Press Start 2P", cursive;
 
-    color: whitesmoke;
-    font-size: 2em;
-    text-align: center;
+      color: whitesmoke;
+      font-size: calc(0.8em + 1vw);
+      text-align: center;
 
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 20px;
+    }
   }
 
   .btnDelete {
