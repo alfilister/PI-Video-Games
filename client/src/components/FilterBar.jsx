@@ -106,32 +106,36 @@ function FilterBar() {
   return (
     <>
       <div className={style.filterBar}>
-        <select value={sortAz} onChange={(e) => handleSortAz(e)}>
-          <option disabled>Sort A-Z</option>
-          <option value="asc">Asc</option>
-          <option value="des">Des</option>
-        </select>
-        <select value={sortRating} onChange={(e) => handleSortRating(e)}>
-          <option disabled>Sort Rating</option>
-          <option value="asc">Asc</option>
-          <option value="des">Des</option>
-        </select>
-        <select value={genre} onChange={(e) => handleFilterGenre(e)}>
-          <option disabled>Filter By Genre</option>
-          {allGenres.map((genre) => {
-            return (
-              <option key={genre} value={genre}>
-                {genre}
-              </option>
-            )
-          })}
-        </select>
-        <select value={origin} onChange={(e) => handleFilterOrigin(e)}>
-          <option disabled>Filter By Origin</option>
-          <option value="all">All</option>
-          <option value="created">Created</option>
-          <option value="api">Api</option>
-        </select>
+        <div className={style.sorts}>
+          <select value={sortAz} onChange={(e) => handleSortAz(e)}>
+            <option disabled>Sort A-Z</option>
+            <option value="asc">Asc</option>
+            <option value="des">Des</option>
+          </select>
+          <select value={sortRating} onChange={(e) => handleSortRating(e)}>
+            <option disabled>Sort Rating</option>
+            <option value="asc">Asc</option>
+            <option value="des">Des</option>
+          </select>
+        </div>
+        <div className={style.filters}>
+          <select value={genre} onChange={(e) => handleFilterGenre(e)}>
+            <option disabled>Filter By Genre</option>
+            {allGenres.map((genre) => {
+              return (
+                <option key={genre} value={genre}>
+                  {genre}
+                </option>
+              )
+            })}
+          </select>
+          <select value={origin} onChange={(e) => handleFilterOrigin(e)}>
+            <option disabled>Filter By Origin</option>
+            <option value="all">All</option>
+            <option value="created">Created</option>
+            <option value="api">Api</option>
+          </select>
+        </div>
         <button onClick={(e) => handleReset(e)}>Reset Filters</button>
       </div>
 
