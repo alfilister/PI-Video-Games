@@ -19,6 +19,8 @@ function Home() {
         </div>
         <SearchBar />
         <FilterBar />
+        <br />
+        <br />
       </div>
     </>
   )
