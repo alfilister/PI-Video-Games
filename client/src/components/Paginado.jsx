@@ -27,7 +27,7 @@ export default class Paginado extends Component {
           </button>
         )}
 
-        {maxPages !== 1 ? (
+        {maxPages !== 1 &&
           pageNumbers &&
           pageNumbers.map((number) => (
             <button
@@ -37,10 +37,7 @@ export default class Paginado extends Component {
             >
               {number}
             </button>
-          ))
-        ) : (
-          <div></div>
-        )}
+          ))}
 
         {currentPage < maxPages && (
           <button className={style.btnNxtPrv} onClick={() => nxtPage(maxPages)}>
