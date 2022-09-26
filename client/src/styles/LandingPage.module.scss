@@ -40,7 +40,7 @@
 
   @mixin h1($velocidad) {
     color: whitesmoke;
-    font-size: 5em;
+    font-size: calc(3em + 1vw);
     font-weight: 500;
     text-align: left;
     margin: 0;
