@@ -3,6 +3,12 @@
   justify-content: center;
   margin: 1.5em auto;
 
+  .filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   select {
     width: auto;
     height: 2em;
@@ -45,6 +51,12 @@
 
     button {
       margin-left: 0;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    .filters {
+      flex-direction: column;
     }
   }
 }
