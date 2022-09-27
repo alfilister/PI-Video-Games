@@ -17,6 +17,7 @@ import Paginado from "../components/Paginado"
 
 function FilterBar() {
   const dispatch = useDispatch()
+
   const allVideogames = useSelector((state) => state.videogames)
   const allGenres = useSelector((state) => state.allgenres)
   const charged = useSelector((state) => state.videocharged)
