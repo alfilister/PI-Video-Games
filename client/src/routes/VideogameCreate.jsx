@@ -192,8 +192,8 @@ function VideogameCreate() {
         "Now you will see it in Homepage",
         "success"
       )
-        .then(dispatch(getDbGames()))
-        .then(navigate("/home"))
+        .then(() => dispatch(getDbGames()))
+        .then(() => navigate("/home"))
     }
   }
 
