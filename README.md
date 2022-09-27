@@ -1,5 +1,7 @@
 ## Videogames App - Single Page Application
 
+-Instead reading this document you could be interacting with the app by following the Link: https://videofront-c25fa.web.app/
+
 It is an application that has a video game database that receives some (first 100 from more than 700 thousand videogames listed in Rawg) data both from an API and from its own database (created using PostgreSQL and managed through Sequelize).
 
 The page has a Landing Page with an animation that gives time for the information to load by the API response, once inside you can sort by rating or name, in addition to filtering by category, origin (Database / API) .
